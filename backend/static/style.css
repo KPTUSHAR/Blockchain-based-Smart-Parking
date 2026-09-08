@@ -1,0 +1,2871 @@
+/* 🌙 Dark Theme */
+body {
+  background-color: #0d1117;
+  color: #f0f6fc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #0ff;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #58a6ff;
+  border-bottom: 2px solid #30363d;
+  padding-bottom: 5px;
+}
+
+footer {
+  text-align: center;
+  color: #999;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.dashboard {
+  max-width: 900px;
+  margin: auto;
+  background: #161b22;
+  border-radius: 10px;
+  padding: 20px 40px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+/* Buttons */
+button {
+  background-color: #238636;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 8px;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #2ea043;
+}
+
+.actions {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Slots Grid */
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.slot {
+  background-color: #238636;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0, 255, 100, 0.3);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.slot:hover {
+  transform: scale(1.05);
+}
+
+.slot.booked {
+  background-color: #da3633;
+  box-shadow: 0 0 8px rgba(255, 80, 80, 0.5);
+}
+
+/* === VEHICLE DETAILS PAGE === */
+body.login-page.vehicle-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* centers vertically */
+  height: 100vh;
+  margin: 0;
+  background: url("../static/images/wallpaper.jpeg") center/cover no-repeat;
+}
+
+/* Vehicle box wrapper */
+.vehicle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Vehicle form container */
+.vehicle-container {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 16px;
+  padding: 50px 60px;
+  width: 480px;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Input boxes and dropdowns */
+.vehicle-container input[type="text"],
+.vehicle-container input[type="number"],
+.vehicle-container select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #00ffff;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-size: 15px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+/* Buttons row */
+.vehicle-container .btn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.vehicle-container .btn-primary {
+  background-color: #00ffff;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.vehicle-container .btn-primary:hover {
+  background-color: #00cccc;
+}
+
+.vehicle-container .btn-danger {
+  background-color: #ff4d4d;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.vehicle-container .btn-danger:hover {
+  background-color: #e60000;
+}
+
+
+/* ==========================================================
+   🚗 DASHBOARD PAGE
+   ========================================================== */
+body.login-page.dashboard-screen {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 100px 20px 40px; /* Space for live clock */
+  box-sizing: border-box;
+  background-color: #0a0a0a;
+  overflow-x: hidden;
+}
+
+/* ==========================================================
+   📦 DASHBOARD WRAPPER
+   ========================================================== */
+.dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   🏢 MAIN DASHBOARD CONTAINER
+   ========================================================== */
+.dashboard-container {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 16px;
+  padding: 50px 60px;
+  width: 950px;
+  max-width: 100%;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   🎛️ ACTION BUTTON ROW (CENTER FIX)
+   ========================================================== */
+.center-btns {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: center;
+  gap: 25px; /* equal spacing between buttons */
+  margin: 25px 0;
+}
+
+.center-btns button {
+  min-width: 180px;
+  text-align: center;
+}
+
+/* ==========================================================
+   📦 ALL SUB SECTION BOXES
+   ========================================================== */
+.section-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 25px 30px;
+  margin-top: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* ==========================================================
+   🖱️ SUB BOX HOVER EFFECT
+   ========================================================== */
+.section-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================
+   🏷️ SECTION TITLE
+   ========================================================== */
+.section-title {
+  color: #00ffff;
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+/* ==========================================================
+   🅿️ PARKING SLOTS GRID
+   ========================================================== */
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   🅿️ PARKING SLOT
+   ========================================================== */
+.slots-grid div {
+  background-color: #00aa00;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  box-sizing: border-box;
+  min-width: 0;
+  cursor: pointer;
+}
+
+/* ==========================================================
+   🖱️ PARKING SLOT HOVER
+   ========================================================== */
+.slots-grid div:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.35);
+  filter: brightness(1.15);
+}
+
+/* ==========================================================
+   👆 PARKING SLOT CLICK
+   ========================================================== */
+.slots-grid div:active {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 5px 12px rgba(0, 255, 255, 0.25);
+}
+
+/* ==========================================================
+   📜 BLOCKCHAIN LEDGER CONTENT
+   ========================================================== */
+#ledger,
+#blockchain-ledger {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ==========================================================
+   🗺️ MAP CONTENT
+   ========================================================== */
+.map-container,
+#map {
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ==========================================================
+   💻 TABLET
+   ========================================================== */
+@media (max-width: 1000px) {
+  body.login-page.dashboard-screen {
+    padding: 100px 15px 35px;
+  }
+
+  .dashboard-container {
+    width: 100%;
+    max-width: 900px;
+    padding: 40px 35px;
+  }
+}
+
+/* ==========================================================
+   📱 MOBILE
+   ========================================================== */
+@media (max-width: 600px) {
+  body.login-page.dashboard-screen {
+    padding: 90px 10px 30px;
+    align-items: flex-start;
+  }
+
+  .dashboard-container {
+    width: 100%;
+    padding: 30px 18px;
+    border-radius: 14px;
+  }
+
+  .section-box {
+    padding: 20px 15px;
+    margin-top: 22px;
+  }
+
+  .section-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 255, 255, 0.25);
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .slots-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .slots-grid div {
+    padding: 11px 6px;
+    font-size: 14px;
+  }
+
+  .slots-grid div:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 255, 255, 0.3);
+    filter: brightness(1.1);
+  }
+}
+
+/* ==========================================================
+   📱 SMALL MOBILE
+   ========================================================== */
+@media (max-width: 380px) {
+  body.login-page.dashboard-screen {
+    padding: 85px 8px 25px;
+  }
+
+  .dashboard-container {
+    padding: 25px 12px;
+  }
+
+  .section-box {
+    padding: 18px 10px;
+  }
+
+  .section-box:hover {
+    transform: translateY(-2px);
+  }
+
+  .slots-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .slots-grid div {
+    padding: 10px 4px;
+    font-size: 13px;
+  }
+}
+
+/* ==========================================================
+   🖱️ DESKTOP HOVER SUPPORT
+   ========================================================== */
+@media (hover: hover) and (pointer: fine) {
+  .section-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .slots-grid div:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.35);
+    filter: brightness(1.15);
+  }
+}
+
+
+/* Ledger box */
+.ledger-box {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  padding: 15px;
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* spacing between blocks */
+}
+
+/* Individual block card */
+.block-card {
+  background-color: #1a1d24;
+  border-left: 6px solid #00b4d8;
+  border-radius: 8px;
+  padding: 14px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.block-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* Visible separator line between blocks */
+.block-separator {
+  height: 2px;
+  background: linear-gradient(to right, #00b4d8, #ffd166, transparent);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* Block text styling */
+.block-title {
+  font-weight: bold;
+  color: #ffd166;
+  margin-bottom: 6px;
+}
+
+.block-data {
+  margin-bottom: 4px;
+  color: #e0e0e0;
+}
+
+.block-hash {
+  font-size: 12px;
+  color: #adb5bd;
+  word-break: break-all;
+}
+
+/* Divider inside block */
+.block-divider {
+  height: 1px;
+  background-color: #343a40;
+  margin: 8px 0;
+}
+
+/* Map container */
+.map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #00ffff;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #00cccc;
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background-color: #ff4d4d;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #ff1a1a;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+
+/* === LANGUAGE SELECTOR & CLOCK === */
+.language-selector {
+  position: absolute;
+  top: 20px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-selector select {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.language-selector select:hover {
+  background: rgba(0, 255, 255, 0.2);
+}
+
+#live-clock {
+  position: absolute;
+  top: 20px;
+  left: 80px;
+  color: #00ffff;
+  font-weight: 600;
+  font-size: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+
+
+/* Ledger box */
+.ledger-box {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  padding: 15px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/* Map container */
+.map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* Ledger box */
+.ledger-box {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  padding: 15px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/* Map container */
+.map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.btn-primary {
+  background-color: #00aaff;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0088cc;
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background-color: #ff4d4d;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #ff1a1a;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ==========================================================
+   ⛓ BLOCKCHAIN LEDGER
+   ========================================================== */
+
+.ledger-box {
+  background: #0d1117;
+
+  border: 1px solid #30363d;
+  border-radius: 10px;
+
+  padding: 15px;
+  margin-top: 10px;
+
+  color: #ccc;
+
+  /* Keep ledger compact */
+  min-height: 100px;
+  max-height: 350px;
+
+  /* Scroll inside ledger */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* Individual transaction */
+
+.ledger-entry {
+  background: #161b22;
+
+  margin: 6px 0;
+  padding: 10px;
+
+  border-radius: 6px;
+
+  border-left: 4px solid #58a6ff;
+
+  line-height: 1.5;
+
+  font-size: 14px;
+
+  word-wrap: break-word;
+}
+
+
+/* Block number */
+
+.ledger-entry strong {
+  color: #00e5ff;
+}
+
+
+/* Timestamp */
+
+.ledger-entry small {
+  color: #8b949e;
+}
+
+
+/* Ledger scrollbar */
+
+.ledger-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ledger-box::-webkit-scrollbar-track {
+  background: #0d1117;
+  border-radius: 10px;
+}
+
+.ledger-box::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 10px;
+}
+
+.ledger-box::-webkit-scrollbar-thumb:hover {
+  background: #58a6ff;
+}
+
+
+/* ==========================================================
+   👋 WELCOME
+   ========================================================== */
+
+.welcome {
+  text-align: center;
+
+  font-size: 18px;
+
+  color: #ffb86c;
+
+  margin-bottom: 15px;
+}
+/* ============================= */
+/* 🔐 LOGIN PAGE STYLING */
+/* ============================= */
+
+
+/* ==========================================================
+   🔐 PROFESSIONAL SMART PARKING LOGIN
+   ========================================================== */
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(5, 10, 18, 0.72) 0%,
+      rgba(5, 10, 18, 0.45) 42%,
+      rgba(5, 10, 18, 0.10) 100%
+    ),
+    url("images/wallpaper.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ==========================================================
+   🔐 LOGIN WRAPPER (right side)
+========================================================== */
+.login-wrapper {
+  position: absolute;
+  right: 12.5%;        /* anchored to right side */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 420px;     /* fixed width for login box */
+}
+
+/* ==========================================================
+   🚗 PARKING INFO (left side)
+========================================================== */
+.parking-info {
+  position: absolute;
+  left: 6.5%;         /* anchored to left side */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 47%; /* remaining space after login box */
+  max-width: 720px;
+  color: #ffffff;
+  animation: parkingFadeIn 0.9s ease forwards;
+}
+/* ==========================================================
+   🔄 MAIN CONTAINER ALIGNMENT FIX
+========================================================== */
+.main-container {
+  display: flex;
+  justify-content: center;       /* centers both sections */
+  align-items: center;
+  gap: 40px;                     /* reduced gap between login box and content */
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ==========================================================
+   🚗 PARKING INFO (left side)
+========================================================== */
+.parking-info {
+  flex: 1;
+  max-width: 720px;
+  color: #ffffff;
+  animation: parkingFadeIn 0.9s ease forwards;
+}
+
+/* ==========================================================
+   🔐 LOGIN WRAPPER (right side)
+========================================================== */
+.login-wrapper {
+  flex: 0 0 420px;        /* fixed width for login box */
+  z-index: 20;
+}
+
+/* ==========================================================
+   🏷️ SMART PARKING TAG (logo top-left)
+========================================================== */
+.smart-parking-tag {
+  position: fixed;
+  top: 25px;
+  left: 30px;
+  z-index: 100;
+  font-size: 15px;
+  font-weight: 700;
+  color: #00d9ff;
+  background: rgba(8, 15, 22, 0.75);
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 217, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 217, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ==========================================================
+   🌑 LEFT-SIDE SHADOW OVERLAY
+========================================================== */
+body.login-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.25) 0%,   /* subtle shadow from left */
+    rgba(0, 0, 0, 0.0) 40%    /* fades out */
+  );
+}
+
+/* ==========================================================
+   🕒 LIVE CLOCK
+========================================================== */
+#live-clock {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  color: #c9d1d9;
+  background-color: rgba(13, 17, 23, 0.6);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: "Segoe UI", sans-serif;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================
+   🔐 LOGIN CONTAINER
+========================================================== */
+.login-container {
+  width: 100%;       /* fill wrapper width */
+  padding: 35px 38px;
+  background: rgba(13, 17, 23, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(0, 229, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-align: left;
+}
+
+
+
+/* ==========================================================
+   🌐 GLOBAL RESET
+========================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.login-page {
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  overflow: auto;
+  position: relative;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(4, 10, 16, 0.72) 0%,
+      rgba(4, 10, 16, 0.45) 42%,
+      rgba(4, 10, 16, 0.30) 100%
+    ),
+    url("/static/images/wallpaper.jpeg");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* ==========================================================
+   🖼️ EXTRA WALLPAPER OVERLAY
+========================================================== */
+body.login-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 8, 13, 0.12) 0%,
+      rgba(3, 8, 13, 0.04) 55%,
+      rgba(3, 8, 13, 0.12) 100%
+    );
+}
+
+
+
+/* ==========================================================
+   🌐 LANGUAGE SELECTOR
+========================================================== */
+
+.language-selector {
+  position: fixed;
+
+  top: 28px;
+  right: 32px;
+
+  z-index: 100;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 10px 14px;
+
+  border-radius: 13px;
+
+  background:
+    rgba(8, 15, 22, 0.80);
+
+  border:
+    1px solid rgba(0, 217, 255, 0.45);
+
+  box-shadow:
+    0 0 20px rgba(0, 217, 255, 0.10);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+.language-icon {
+  font-size: 18px;
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(0, 217, 255, 0.5)
+    );
+}
+
+
+.language-selector select {
+  appearance: none;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.language-selector select option {
+  background: #101820;
+
+  color: #ffffff;
+}
+
+
+/* ==========================================================
+   🕒 LIVE CLOCK
+========================================================== */
+
+#live-clock {
+  position: fixed;
+
+  top: 22px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 100;
+
+  padding: 9px 17px;
+
+  border-radius: 11px;
+
+  background:
+    rgba(8, 15, 22, 0.78);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.13);
+
+  color: #e6f7ff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
+
+
+/* ==========================================================
+   🔐 LOGIN CONTAINER
+========================================================== */
+
+.login-container {
+  width: 100%;
+
+  padding:
+    48px 48px 40px;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(16, 23, 31, 0.94),
+      rgba(13, 18, 25, 0.88)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.14);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.48),
+    0 0 30px rgba(0, 217, 255, 0.05);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  text-align: center;
+}
+
+
+/* ==========================================================
+   🔐 LOGIN TITLE
+========================================================== */
+
+.login-container h1 {
+  margin: 0 0 10px;
+
+  font-size: 31px;
+
+  font-weight: 750;
+
+  letter-spacing: -0.5px;
+
+  color: #ffffff;
+}
+
+
+.login-subtitle {
+  margin: 0 0 30px;
+
+  color: #8b949e;
+
+  font-size: 14px;
+
+  letter-spacing: 0.2px;
+}
+
+
+/* ==========================================================
+   📝 INPUTS
+========================================================== */
+
+.login-container input {
+  width: 100%;
+
+  height: 53px;
+
+  margin-bottom: 16px;
+
+  padding:
+    0 17px;
+
+  border-radius: 11px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.15);
+
+  outline: none;
+
+  background:
+    rgba(3, 7, 11, 0.80);
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.login-container input::placeholder {
+  color: #77818d;
+}
+
+
+.login-container input:focus {
+  border-color: #00d9ff;
+
+  background:
+    rgba(3, 10, 15, 0.92);
+
+  box-shadow:
+    0 0 0 3px rgba(0, 217, 255, 0.08),
+    0 0 18px rgba(0, 217, 255, 0.10);
+}
+
+
+/* ==========================================================
+   🔘 ACTION BUTTONS
+========================================================== */
+
+.actions {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 8px;
+}
+
+
+.actions button {
+  flex: 1;
+
+  height: 51px;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* LOGIN */
+
+#login-btn {
+  border:
+    1px solid #00bfe8;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00a8df,
+      #0096cc
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 20px rgba(0, 174, 239, 0.20);
+}
+
+
+#login-btn:hover {
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #00b9ee,
+      #009ed5
+    );
+
+  box-shadow:
+    0 9px 25px rgba(0, 174, 239, 0.35);
+}
+
+
+/* REGISTER */
+
+#register-btn {
+  border:
+    1px solid rgba(255, 255, 255, 0.20);
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  color: #c9d1d9;
+}
+
+
+#register-btn:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(0, 217, 255, 0.55);
+
+  color: #ffffff;
+
+  background:
+    rgba(0, 217, 255, 0.08);
+}
+
+
+/* ==========================================================
+   📝 LOGIN FOOTER
+========================================================== */
+
+.footer-text {
+  margin:
+    27px 0 0;
+
+  color:
+    #7d8792;
+
+  font-size: 12px;
+
+  letter-spacing: 0.2px;
+}
+
+
+/* ==========================================================
+   🚗 RIGHT SIDE PARKING INFORMATION
+========================================================== */
+
+.parking-info {
+  position: absolute;
+
+  right: 5%;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  z-index: 20;
+
+  width: 47%;
+
+  max-width: 720px;
+
+  color: #ffffff;
+
+  animation:
+    parkingFadeIn 0.9s ease forwards;
+}
+
+
+/* ==========================================================
+   🟦 SYSTEM BADGE
+========================================================== */
+
+.hero-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding:
+    8px 15px;
+
+  border-radius: 30px;
+
+  border:
+    1px solid rgba(0, 217, 255, 0.35);
+
+  background:
+    rgba(5, 20, 28, 0.65);
+
+  color:
+    #00d9ff;
+
+  font-size: 11px;
+
+  font-weight: 750;
+
+  letter-spacing: 1.5px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ==========================================================
+   🟢 SYSTEM ONLINE DOT
+========================================================== */
+
+.status-dot {
+  width: 8px;
+
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    #00ff9d;
+
+  box-shadow:
+    0 0 7px #00ff9d,
+    0 0 15px rgba(0, 255, 157, 0.55);
+
+  animation:
+    statusPulse 2s ease-in-out infinite;
+}
+
+
+/* ==========================================================
+   🏙️ HERO SECTION
+========================================================== */
+
+.parking-hero {
+  margin-bottom: 27px;
+}
+
+
+.parking-hero h1 {
+  margin:
+    17px 0 13px;
+
+  font-size:
+    clamp(40px, 4vw, 60px);
+
+  line-height: 1.04;
+
+  font-weight: 800;
+
+  letter-spacing: -1.8px;
+
+  color:
+    #ffffff;
+
+  text-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.75);
+}
+
+
+.parking-hero h1 span {
+  color:
+    #00d9ff;
+
+  text-shadow:
+    0 0 22px rgba(0, 217, 255, 0.28);
+}
+
+
+.hero-description {
+  max-width: 620px;
+
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+
+/* ==========================================================
+   ⚡ FEATURES
+========================================================== */
+
+.parking-features {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 11px;
+
+  margin-bottom: 20px;
+}
+
+
+.feature-item {
+  min-height: 76px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding:
+    12px 14px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(8, 17, 24, 0.76);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.16);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.feature-item:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    rgba(7, 25, 34, 0.88);
+
+  border-color:
+    rgba(0, 217, 255, 0.40);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22),
+    0 0 18px rgba(0, 217, 255, 0.08);
+}
+
+
+/* ==========================================================
+   🔷 FEATURE ICON
+========================================================== */
+
+.feature-icon {
+  width: 38px;
+
+  height: 38px;
+
+  min-width: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background:
+    rgba(0, 217, 255, 0.10);
+
+  border:
+    1px solid rgba(0, 217, 255, 0.25);
+
+  color:
+    #00d9ff;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+
+/* ==========================================================
+   📝 FEATURE TEXT
+========================================================== */
+
+.feature-item h3 {
+  margin:
+    0 0 4px;
+
+  color:
+    #ffffff;
+
+  font-size: 13px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+}
+
+
+.feature-item p {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.60);
+
+  font-size: 11px;
+
+  line-height: 1.35;
+}
+
+
+/* ==========================================================
+   📊 PARKING STATISTICS
+========================================================== */
+
+.parking-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 9px;
+
+  margin-top: 5px;
+}
+
+
+.stat-card {
+  min-width: 0;
+
+  padding:
+    14px 8px;
+
+  text-align: center;
+
+  border-radius: 12px;
+
+  background:
+    rgba(5, 12, 18, 0.82);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.stat-card:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    rgba(8, 22, 30, 0.90);
+
+  border-color:
+    rgba(0, 217, 255, 0.35);
+}
+
+
+/* ==========================================================
+   🔢 STAT NUMBERS
+========================================================== */
+
+.stat-number {
+  font-size: 25px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  color:
+    #ffffff;
+}
+
+
+.stat-number.available {
+  color:
+    #00ff9d;
+
+  text-shadow:
+    0 0 12px rgba(0, 255, 157, 0.30);
+}
+
+
+.stat-number.occupied {
+  color:
+    #ff6262;
+
+  text-shadow:
+    0 0 12px rgba(255, 98, 98, 0.25);
+}
+
+
+.stat-number.reserved {
+  color:
+    #ffc857;
+
+  text-shadow:
+    0 0 12px rgba(255, 200, 87, 0.25);
+}
+
+
+/* ==========================================================
+   🏷️ STAT LABEL
+========================================================== */
+
+.stat-label {
+  margin-top: 7px;
+
+  color:
+    rgba(255, 255, 255, 0.52);
+
+  font-size: 8px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  letter-spacing: 0.9px;
+}
+
+
+/* ==========================================================
+   🚗 TAGLINE
+========================================================== */
+
+.parking-tagline {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 17px;
+
+  color:
+    rgba(255, 255, 255, 0.70);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+
+.parking-tagline span:first-child {
+  font-size: 16px;
+}
+
+
+/* ==========================================================
+   © FOOTER
+========================================================== */
+
+.site-footer {
+  position: fixed;
+
+  bottom: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 50;
+
+  background:
+    rgba(4, 9, 14, 0.84);
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+
+.site-footer p {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
+  font-size: 12px;
+
+  letter-spacing: 0.2px;
+}
+
+
+/* ==========================================================
+   ✨ ANIMATIONS
+========================================================== */
+
+@keyframes parkingFadeIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-46%);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(-50%);
+  }
+
+}
+
+
+@keyframes statusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+
+  50% {
+    opacity: 0.55;
+
+    transform:
+      scale(0.78);
+  }
+
+}
+
+
+/* ==========================================================
+   💻 LAPTOP
+========================================================== */
+
+@media (max-width: 1200px) {
+
+  .login-wrapper {
+    left: 5%;
+
+    width: 450px;
+  }
+
+
+  .parking-info {
+    right: 3%;
+
+    width: 49%;
+  }
+
+
+  .parking-hero h1 {
+    font-size: 45px;
+  }
+
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+}
+
+
+/* ==========================================================
+   📱 TABLET
+========================================================== */
+
+@media (max-width: 950px) {
+
+  body.login-page {
+    overflow-y: auto;
+  }
+
+
+  .login-wrapper {
+    position: relative;
+
+    left: auto;
+    top: auto;
+
+    transform: none;
+
+    width:
+      min(90%, 500px);
+
+    margin:
+      110px auto 40px;
+  }
+
+
+  .parking-info {
+    position: relative;
+
+    right: auto;
+    top: auto;
+
+    transform: none;
+
+    width:
+      min(90%, 700px);
+
+    margin:
+      20px auto 70px;
+  }
+
+}
+
+
+/* ==========================================================
+   📱 MOBILE
+========================================================== */
+
+@media (max-width: 600px) {
+
+  body.login-page {
+    background-position:
+      center center;
+  }
+
+
+  .language-selector {
+    top: 15px;
+
+    right: 15px;
+
+    padding:
+      8px 11px;
+  }
+
+
+  #live-clock {
+    top: 15px;
+
+    left: 15px;
+
+    transform: none;
+
+    font-size: 11px;
+
+    padding:
+      8px 10px;
+  }
+
+
+  .login-wrapper {
+    width: 92%;
+
+    margin-top: 95px;
+  }
+
+
+  .login-container {
+    padding:
+      35px 25px 30px;
+
+    border-radius: 18px;
+  }
+
+
+  .login-container h1 {
+    font-size: 27px;
+  }
+
+
+  .parking-info {
+    width: 92%;
+
+    margin-top: 30px;
+  }
+
+
+  .parking-hero h1 {
+    font-size: 36px;
+
+    letter-spacing: -1px;
+  }
+
+
+  .hero-description {
+    font-size: 13px;
+
+    line-height: 1.6;
+  }
+
+
+  .parking-features {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .parking-stats {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  .site-footer p {
+    font-size: 10px;
+  }
+
+}
+
+
+/* ==========================================================
+   📱 VERY SMALL MOBILE
+========================================================== */
+
+@media (max-width: 400px) {
+
+  .login-container {
+    padding:
+      30px 20px 25px;
+  }
+
+
+  .actions {
+    flex-direction: column;
+  }
+
+
+  .parking-hero h1 {
+    font-size: 31px;
+  }
+
+
+  .hero-badge {
+    font-size: 9px;
+
+    letter-spacing: 1px;
+  }
+
+}
+
+/* ==========================================================
+   🧠 Final Glass Dashboard Panel (Reduced Transparency)
+   ========================================================== */
+
+
+/* 🌤️💳 Compact Glass Widgets */
+.widgets-container {
+  position: absolute;
+  top: 80px; /* ensures space below language selector */
+  right: 3%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-widget {
+  width: 220px;
+  background: rgba(13, 17, 23, 0.9); /* very low transparency */
+  border-radius: 16px;
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.dashboard-widget:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.35);
+}
+
+.dashboard-widget h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #00e5ff;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.4);
+  margin-bottom: 6px;
+}
+
+/* Weather */
+.weather-icon {
+  font-size: 22px;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+#weather-temp {
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  color: #00e5ff;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+#weather-desc {
+  font-size: 13px;
+  color: #c9d1d9;
+}
+
+/* FASTag */
+.fastag-icon {
+  font-size: 20px;
+  animation: pulseTag 2.5s ease-in-out infinite;
+}
+@keyframes pulseTag {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+.fastag-info {
+  font-size: 13px;
+  color: #c9d1d9;
+}
+.fastag-info span {
+  color: #00ff88;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(0,255,136,0.4);
+}
+
+
+
+
+
+
+/* ==========================================================
+   🌐 LANGUAGE SELECTOR
+   ========================================================== */
+
+.language-selector {
+  position: fixed !important;
+  top: 25px !important;
+  right: 30px !important;
+
+  display: flex !important;
+  align-items: center !important;
+
+  gap: 8px !important;
+
+  padding: 10px 14px !important;
+
+  background: rgba(13, 17, 23, 0.95) !important;
+
+  border: 1px solid #00e5ff !important;
+  border-radius: 10px !important;
+
+  z-index: 999999 !important;
+
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.25) !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.language-icon {
+  display: inline-block !important;
+  font-size: 18px !important;
+}
+
+.language-selector select {
+  display: block !important;
+
+  width: auto !important;
+  min-width: 90px !important;
+
+  background-color: #0d1117 !important;
+
+  color: #ffffff !important;
+
+  border: none !important;
+  outline: none !important;
+
+  padding: 4px 6px !important;
+
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+
+  cursor: pointer !important;
+}
+
+.language-selector select option {
+  background-color: #161b22 !important;
+  color: #ffffff !important;
+}
+
+/* Login subtitle */
+
+.login-subtitle {
+  text-align: center;
+
+  color: #8b949e;
+
+  font-size: 13px;
+
+  margin: -2px 0 20px;
+}
+
+/* ============================
+   💳 Payment Modal Styling
+   ============================ */
+.payment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.payment-modal.show {
+  opacity: 1;
+}
+
+.payment-content {
+  background: #121212;
+  color: #fff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  width: 340px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  animation: slideUp 0.3s ease;
+}
+
+.map-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.payment-content h2 {
+  margin-bottom: 10px;
+  color: #00e5ff;
+}
+
+.payment-content input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #00e5ff;
+  margin-top: 15px;
+  background: #1c1c1c;
+  color: #fff;
+  text-align: center;
+}
+
+.payment-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.payment-actions button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+#pay-btn {
+  background-color: #00e676;
+  color: black;
+}
+
+#pay-btn:hover {
+  background-color: #00b050;
+}
+
+#cancel-btn {
+  background-color: #ff5252;
+  color: white;
+}
+
+#cancel-btn:hover {
+  background-color: #e53935;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* ==========================================================
+   💳 PAYMENT MODAL - FINAL FIX
+   ========================================================== */
+
+.payment-modal {
+
+  position: fixed !important;
+
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+
+  width: 100% !important;
+  height: 100vh !important;
+
+  background: rgba(0, 0, 0, 0.78);
+
+  display: flex !important;
+
+  justify-content: center !important;
+
+  /*
+     IMPORTANT:
+     Start the payment box from the top with
+     a guaranteed gap.
+  */
+  align-items: flex-start !important;
+
+  /*
+     Guaranteed space around the box.
+  */
+  padding: 40px 20px !important;
+
+  box-sizing: border-box !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 99999 !important;
+}
+
+
+/* ==========================================================
+   SHOW PAYMENT MODAL
+   ========================================================== */
+
+.payment-modal.show {
+
+  opacity: 1 !important;
+
+  visibility: visible !important;
+}
+
+
+/* ==========================================================
+   💳 PAYMENT CONTENT
+   ========================================================== */
+
+.payment-content {
+
+  position: relative !important;
+
+  width: 100% !important;
+
+  max-width: 520px !important;
+
+  /*
+     Never allow the box to touch the browser edges.
+  */
+  margin: 0 auto !important;
+
+  /*
+     Keep the box inside the viewport.
+  */
+  max-height: calc(100vh - 80px) !important;
+
+  padding: 30px !important;
+
+  box-sizing: border-box !important;
+
+  background: #0b0b0b;
+
+  color: #e0f7fa;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow:
+    0 0 25px rgba(0, 255, 255, 0.3);
+
+  /*
+     If the content becomes too tall,
+     scroll inside the box.
+  */
+  overflow-y: auto !important;
+
+  overflow-x: hidden !important;
+
+  animation: fadeIn 0.3s ease;
+}
+
+
+/* ==========================================================
+   💳 PAYMENT HEADING
+   ========================================================== */
+
+.payment-content h2 {
+
+  margin-top: 0 !important;
+
+  margin-bottom: 15px;
+
+  color: #00e5ff;
+
+  font-size: 28px;
+
+  line-height: 1.3;
+}
+
+
+.payment-content h3 {
+
+  margin-top: 10px !important;
+
+  margin-bottom: 20px;
+
+  font-size: 22px;
+
+  line-height: 1.3;
+}
+
+
+/* ==========================================================
+   💰 PAYMENT TEXT
+   ========================================================== */
+
+.payment-content p {
+
+  color: #fff;
+
+  margin: 12px 0;
+
+  line-height: 1.5;
+}
+
+
+/* ==========================================================
+   🟦 QR IMAGE
+   ========================================================== */
+
+.payment-content .qr-img {
+
+  display: block;
+
+  width: 200px;
+
+  height: 200px;
+
+  max-width: 70vw;
+
+  max-height: 35vh;
+
+  object-fit: contain;
+
+  margin: 20px auto;
+
+  padding: 8px;
+
+  background: #fff;
+
+  border-radius: 10px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   📱 QR BUTTONS
+   ========================================================== */
+
+.payment-content .pay-btn,
+.payment-content .back-btn {
+
+  min-height: 48px;
+
+  padding: 11px 20px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin: 6px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   📱 TABLET
+   ========================================================== */
+
+@media (max-width: 700px) {
+
+  .payment-modal {
+
+    padding: 30px 15px !important;
+
+  }
+
+  .payment-content {
+
+    max-width: 500px !important;
+
+    max-height: calc(100vh - 60px) !important;
+
+    padding: 25px 20px !important;
+
+    border-radius: 18px;
+  }
+
+}
+
+
+/* ==========================================================
+   📱 MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+  .payment-modal {
+
+    padding: 20px 10px !important;
+
+  }
+
+  .payment-content {
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    max-height: calc(100vh - 40px) !important;
+
+    padding: 22px 15px !important;
+
+    border-radius: 16px;
+  }
+
+  .payment-content h2 {
+
+    font-size: 23px;
+  }
+
+  .payment-content h3 {
+
+    font-size: 20px;
+  }
+
+  .payment-content .qr-img {
+
+    width: 180px;
+
+    height: 180px;
+
+    max-width: 65vw;
+  }
+
+}
+
+
+/* ==========================================================
+   📱 VERY SMALL PHONES
+   ========================================================== */
+
+@media (max-width: 360px) {
+
+  .payment-modal {
+
+    padding: 15px 8px !important;
+
+  }
+
+  .payment-content {
+
+    max-height: calc(100vh - 30px) !important;
+
+    padding: 18px 12px !important;
+  }
+
+  .payment-content .qr-img {
+
+    width: 160px;
+
+    height: 160px;
+  }
+
+  .payment-content .pay-btn,
+  .payment-content .back-btn {
+
+    width: 100%;
+
+    margin: 5px 0;
+  }
+
+}
+
+
+/* ==========================================================
+   ✨ ANIMATION
+   ========================================================== */
+
+@keyframes fadeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(-10px) scale(0.98);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+
+  }
+
+}
+/* ==========================================================
+   🚗 Vehicle Details Page Styling (Dark Premium Design)
+   ========================================================== */
+
+.vehicle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.vehicle-container {
+  width: 550px;
+  background: #161b22;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.25);
+}
+
+.page-title {
+  text-align: center;
+  color: #00fff2;
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.input-label {
+  color: #f0f6fc;
+  font-size: 16px;
+  margin-top: 10px;
+  display: block;
+}
+
+.text-input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #fff;
+  font-size: 15px;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #00fff2;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+/* Vehicle Box */
+.vehicle-box {
+  background: #0d1117;
+  padding: 18px;
+  margin-top: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+  border: 1px solid #1f2937;
+}
+
+.vehicle-title {
+  color: #00fff2;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: #00e6cc;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background: #00fff2;
+}
+
+.btn-danger {
+  background: #ff4444;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-danger:hover {
+  background: #ff6666;
+}
+.payment-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 9999;
+}
+
+.payment-modal.show {
+  opacity: 1; visibility: visible;
+}
+
+.payment-box {
+  background: #0d1117;
+  padding: 25px 30px;
+  border-radius: 15px;
+  width: 380px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 20px rgb(0,255,255,0.3);
+}
+
+.pay-option {
+  width: 90%;
+  background: #111;
+  border: 1px solid #0ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 8px 0;
+  color: #0ff;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.pay-option:hover {
+  background: #0ff;
+  color: #000;
+}
+
+.input-field, .payment-box input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  background: #111;
+  border: 1px solid #0ff;
+  border-radius: 8px;
+  color: #0ff;
+}
+
+.inline-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inline-fields input {
+  width: 45%;
+}
+
+.pay-btn {
+  background: #00e676;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.back-btn, .cancel-btn {
+  margin-top: 12px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #ff5252;
+  color: #fff;
+  cursor: pointer;
+}
+
+.qr-img {
+  width: 200px;
+  height: 200px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+/* ==========================================================
+   🔄 SWAP LEFT AND RIGHT SECTIONS
+   ========================================================== */
+.main-container {
+  display: flex;              /* enable flexbox */
+  flex-direction: row-reverse; /* flip order of children */
+}
+
+/* ==========================================================
+   🧭 DASHBOARD & OTHER PAGES FIX
+========================================================== */
+
+/* Re‑enable scrolling and interaction for all non‑login pages */
+body:not(.login-page) {
+  overflow-y: auto !important;
+}
+
+/* Disable the shadow overlay outside the login page */
+body:not(.login-page)::after {
+  content: none !important;
+}

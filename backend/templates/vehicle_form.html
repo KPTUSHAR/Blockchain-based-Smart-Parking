@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vehicle Details | Smart Parking</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body class="login-page">
+    <!-- 🌐 Language Selector -->
+    <div class="language-selector">
+      <span class="language-icon">🌐</span>
+      <select id="languageSelect" onchange="changeVehicleLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="kn">ಕನ್ನಡ</option>
+      </select>
+    </div>
+
+    <!-- 🕒 Live Clock -->
+    <div id="live-clock"></div>
+
+    <!-- Vehicle Form -->
+    <div class="vehicle-wrapper">
+      <div class="vehicle-container">
+        <h1 id="page-title" class="page-title">🚗 Vehicle Details</h1>
+
+        <!-- Number of vehicles -->
+        <label id="vehicle-label" class="input-label"
+          >Number of vehicles:</label
+        >
+        <input
+          type="number"
+          id="vehicle-count"
+          placeholder="Enter number of vehicles"
+          oninput="renderVehicleForms()"
+          class="text-input"
+        />
+
+        <!-- Dynamic vehicle blocks -->
+        <div id="vehicle-list"></div>
+
+        <!-- Slots -->
+        <label id="slot-label" class="input-label">Slots required:</label>
+        <input
+          type="number"
+          id="slot-limit"
+          placeholder="Enter slot limit"
+          class="text-input"
+        />
+
+        <!-- Buttons -->
+        <div class="btn-row">
+          <button id="save-btn" type="button" class="btn-primary">
+            Save & Continue
+          </button>
+          <button id="logout-btn" onclick="logout()" class="btn-danger">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+    <script>
+      // ---------------------- LOGOUT ----------------------
+      function logout() {
+        localStorage.removeItem("currentUser");
+        window.location.href = "/";
+      }
+
+      // ---------------------- DYNAMIC VEHICLE BOXES ----------------------
+      function renderVehicleForms() {
+        const count = parseInt(
+          document.getElementById("vehicle-count")?.value || 0,
+        );
+        const container = document.getElementById("vehicle-list");
+        container.innerHTML = "";
+
+        for (let i = 1; i <= count; i++) {
+          const box = `
+            <div class="vehicle-box">
+              <h3 class="vehicle-title">Vehicle ${i}</h3>
+              <input
+                type="text"
+                id="plate-${i}"
+                placeholder="Vehicle Number (e.g., KA01AB1234)"
+                class="text-input"
+              />
+              <select id="vtype-${i}" class="text-input">
+                <option value="Car">Car</option>
+                <option value="Bike">Bike</option>
+                <option value="Truck">Truck</option>
+                <option value="Van">Van</option>
+              </select>
+            </div>
+          `;
+          container.innerHTML += box;
+        }
+      }
+
+      // ---------------------- SAVE VEHICLE DATA ----------------------
+      document
+        .getElementById("save-btn")
+        .addEventListener("click", async () => {
+          const count = parseInt(
+            document.getElementById("vehicle-count")?.value || 0,
+          );
+          const slotLimit = document.getElementById("slot-limit")?.value;
+
+          if (!count || !slotLimit) {
+            return alert("⚠️ Please fill all required fields!");
+          }
+
+          const vehicles = [];
+          for (let i = 1; i <= count; i++) {
+            const plate = document.getElementById(`plate-${i}`)?.value.trim();
+            const type = document.getElementById(`vtype-${i}`)?.value;
+            if (!plate)
+              return alert(`⚠️ Enter vehicle number for Vehicle ${i}`);
+            vehicles.push({ plate, type });
+          }
+
+          try {
+            const res = await fetch("/set_vehicle", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                username: localStorage.getItem("currentUser"),
+                vehicles,
+                slot_limit: slotLimit,
+              }),
+            });
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message);
+
+            alert("✅ Vehicle details saved successfully!");
+            window.location.href = "/dashboard";
+          } catch (err) {
+            alert(`❌ Error: ${err.message}`);
+          }
+        });
+
+      // ==========================================================
+      // 🌐 VEHICLE PAGE TRANSLATIONS
+      // ==========================================================
+      const vehicleTranslations = {
+        en: {
+          title: "🚗 Vehicle Details",
+          vehicleLabel: "Number of vehicles:",
+          slotLabel: "Slots required:",
+          save: "Save & Continue",
+          logout: "Logout",
+        },
+        hi: {
+          title: "🚗 वाहन विवरण",
+          vehicleLabel: "वाहनों की संख्या:",
+          slotLabel: "स्लॉट आवश्यक:",
+          save: "सहेजें और जारी रखें",
+          logout: "लॉगआउट",
+        },
+        kn: {
+          title: "🚗 ವಾಹನ ವಿವರಗಳು",
+          vehicleLabel: "ವಾಹನಗಳ ಸಂಖ್ಯೆ:",
+          slotLabel: "ಸ್ಲಾಟ್ ಅಗತ್ಯವಿದೆ:",
+          save: "ಉಳಿಸಿ ಮತ್ತು ಮುಂದುವರಿಸಿ",
+          logout: "ಲಾಗ್‌ಔಟ್",
+        },
+      };
+
+      // ==========================================================
+      // 🌐 CHANGE VEHICLE PAGE LANGUAGE
+      // ==========================================================
+      function changeVehicleLanguage(language) {
+        const text = vehicleTranslations[language];
+        if (!text) return;
+
+        document.getElementById("page-title").textContent = text.title;
+        document.getElementById("vehicle-label").textContent =
+          text.vehicleLabel;
+        document.getElementById("slot-label").textContent = text.slotLabel;
+        document.getElementById("save-btn").textContent = text.save;
+        document.getElementById("logout-btn").textContent = text.logout;
+
+        document.documentElement.lang = language;
+        localStorage.setItem("selectedLanguage", language);
+      }
+
+      // ==========================================================
+      // ⏰ LIVE CLOCK
+      // ==========================================================
+      function updateClock() {
+        const clock = document.getElementById("live-clock");
+        if (!clock) return;
+
+        const now = new Date();
+        const date = now.toLocaleDateString("en-GB");
+        const time = now.toLocaleTimeString("en-GB", { hour12: false });
+
+        clock.textContent = `${date} | ${time}`;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // ==========================================================
+      // 🌐 AUTO APPLY SAVED LANGUAGE
+      // ==========================================================
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedLang = localStorage.getItem("selectedLanguage") || "en";
+        document.getElementById("languageSelect").value = savedLang;
+        changeVehicleLanguage(savedLang);
+      });
+    </script>
+  </body>
+</html>

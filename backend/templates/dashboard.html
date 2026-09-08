@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Parking Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body class="login-page dashboard-screen">
+    <!-- 🌐 Language Selector -->
+    <div class="language-selector">
+      <span class="language-icon">🌐</span>
+      <select
+        id="languageSelect"
+        onchange="changeDashboardLanguage(this.value)"
+      >
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="kn">ಕನ್ನಡ</option>
+      </select>
+    </div>
+
+    <!-- 🕒 Live Clock -->
+    <div id="live-clock"></div>
+
+    <div class="dashboard-wrapper">
+      <div class="dashboard-container">
+        <!-- Header -->
+        <h1 class="page-title">🚗 Blockchain‑Enabled Smart Parking System</h1>
+        <p class="welcome">
+          👋 Welcome, {{ request.args.get('user', 'User') }}!
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="btn-row center-btns">
+          <button type="button" id="refresh-slots" class="btn-primary">
+            🔄 Refresh Slots
+          </button>
+          <button type="button" id="view-ledger" class="btn-primary">
+            📜 View Blockchain Ledger
+          </button>
+          <button
+            type="button"
+            id="logout-btn"
+            class="btn-danger"
+            onclick="logout()"
+          >
+            Logout
+          </button>
+        </div>
+
+        <!-- Slots Section -->
+        <section class="section-box slots-section">
+          <h2 class="section-title">🅿️ Available Parking Slots</h2>
+          <div id="slots" class="slots-grid">
+            <div>Slot 1</div>
+            <div>Slot 2</div>
+            <div>Slot 3</div>
+            <div>Slot 4</div>
+            <div>Slot 5</div>
+            <div>Slot 6</div>
+            <div>Slot 7</div>
+            <div>Slot 8</div>
+            <div>Slot 9</div>
+            <div>Slot 10</div>
+            <div>Slot 11</div>
+            <div>Slot 12</div>
+            <div>Slot 13</div>
+            <div>Slot 14</div>
+            <div>Slot 15</div>
+          </div>
+        </section>
+
+        <!-- Ledger Section -->
+        <section class="section-box ledger-section" style="display: none">
+          <h2 class="section-title">📒 Blockchain Transaction Ledger</h2>
+          <div id="ledger" class="ledger-box"></div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="section-box map-section">
+          <h2 class="section-title">🗺️ Navigate to Parking Slot</h2>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.003262708966!2d77.59336177484138!3d12.971642787343717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16775069abf7%3A0xe138768bb2a0df8a!2sUB%20City!5e0!3m2!1sen!2sin!4v1788357237370!5m2!1sen!2sin"
+              width="100%"
+              height="300"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+            >
+            </iframe>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>© 2025 Smart Parking System | Blockchain Enabled</footer>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+      // ---------------------- LOGOUT ----------------------
+      function logout() {
+        localStorage.removeItem("currentUser");
+        window.location.href = "/";
+      }
+
+      // ---------------------- LIVE CLOCK ----------------------
+      function updateClock() {
+        const clock = document.getElementById("live-clock");
+        if (!clock) return;
+        const now = new Date();
+        const date = now.toLocaleDateString("en-GB");
+        const time = now.toLocaleTimeString("en-GB", { hour12: false });
+        clock.textContent = `${date} | ${time}`;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // ---------------------- TRANSLATIONS ----------------------
+      const dashboardTranslations = {
+        en: {
+          title: "🚗 Blockchain‑Enabled Smart Parking System",
+          slots: "🅿️ Available Parking Slots",
+          ledger: "📒 Blockchain Transaction Ledger",
+          refresh: "🔄 Refresh Slots",
+          viewLedger: "📜 View Blockchain Ledger",
+          logout: "Logout",
+          slotLabel: "Slot",
+          blockLabel: "Block",
+        },
+        hi: {
+          title: "🚗 ब्लॉकचेन‑सक्षम स्मार्ट पार्किंग सिस्टम",
+          slots: "🅿️ उपलब्ध पार्किंग स्लॉट",
+          ledger: "📒 ब्लॉकचेन लेजर",
+          refresh: "🔄 स्लॉट रीफ़्रेश करें",
+          viewLedger: "📜 ब्लॉकचेन लेजर देखें",
+          logout: "लॉगआउट",
+          slotLabel: "स्लॉट",
+          blockLabel: "ब्लॉक",
+        },
+        kn: {
+          title: "🚗 ಬ್ಲಾಕ್‌ಚೈನ್ ಸ್ಮಾರ್ಟ್ ಪಾರ್ಕಿಂಗ್ ಸಿಸ್ಟಮ್",
+          slots: "🅿️ ಲಭ್ಯವಿರುವ ಪಾರ್ಕಿಂಗ್ ಸ್ಲಾಟ್‌ಗಳು",
+          ledger: "📒 ಬ್ಲಾಕ್‌ಚೈನ್ ಲೆಡ್ಜರ್",
+          refresh: "🔄 ಸ್ಲಾಟ್‌ಗಳನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ",
+          viewLedger: "📜 ಬ್ಲಾಕ್‌ಚೈನ್ ಲೆಡ್ಜರ್ ವೀಕ್ಷಿಸಿ",
+          logout: "ಲಾಗ್‌ಔಟ್",
+          slotLabel: "ಸ್ಲಾಟ್",
+          blockLabel: "ಬ್ಲಾಕ್",
+        },
+      };
+
+      function changeDashboardLanguage(language) {
+        const text = dashboardTranslations[language];
+        if (!text) return;
+        document.querySelector(".page-title").textContent = text.title;
+        document.querySelector(".slots-section h2").textContent = text.slots;
+        document.querySelector(".ledger-section h2").textContent = text.ledger;
+        document.getElementById("refresh-slots").textContent = text.refresh;
+        document.getElementById("view-ledger").textContent = text.viewLedger;
+        document.getElementById("logout-btn").textContent = text.logout;
+        document
+          .querySelectorAll(".slots-grid div")
+          .forEach(
+            (slot, i) => (slot.textContent = `${text.slotLabel} ${i + 1}`),
+          );
+        document
+          .querySelectorAll(".ledger-box .block-title")
+          .forEach(
+            (block, i) => (block.textContent = `${text.blockLabel} #${i + 1}`),
+          );
+        document.documentElement.lang = language;
+        localStorage.setItem("selectedLanguage", language);
+      }
+
+      // ---------------------- AUTO APPLY SAVED LANGUAGE + VIEW LEDGER ----------------------
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedLang = localStorage.getItem("selectedLanguage") || "en";
+        document.getElementById("languageSelect").value = savedLang;
+        changeDashboardLanguage(savedLang);
+
+        const ledgerBtn = document.getElementById("view-ledger");
+        const ledgerSection = document.querySelector(".ledger-section");
+        const ledgerBox = document.getElementById("ledger");
+
+        if (ledgerBtn && ledgerSection) {
+          ledgerBtn.addEventListener("click", async () => {
+            if (
+              ledgerSection.style.display === "none" ||
+              ledgerSection.style.display === ""
+            ) {
+              ledgerSection.style.display = "block";
+              try {
+                const res = await fetch(`${apiBase}/ledger`);
+                const data = await res.json();
+                ledgerBox.innerHTML = "";
+                data.forEach((block, index) => {
+                  const blockEl = document.createElement("div");
+                  blockEl.className = "block-title";
+                  blockEl.innerHTML = `
+                    <strong>Block #${block.index || index + 1}</strong><br>
+                    Timestamp: ${block.timestamp}<br>
+                    Data: ${JSON.stringify(block.data)}<br>
+                    Hash: ${block.hash}
+                  `;
+                  ledgerBox.appendChild(blockEl);
+                });
+              } catch (err) {
+                alert("Error loading ledger: " + err.message);
+              }
+            } else {
+              ledgerSection.style.display = "none";
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

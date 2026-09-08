@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title data-key="pageTitle">Smart Parking Login</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body class="login-page">
+    <!-- 🌐 LANGUAGE SELECTOR -->
+    <div class="language-selector">
+      <span class="language-icon">🌐</span>
+      <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="kn">ಕನ್ನಡ</option>
+      </select>
+    </div>
+
+    <!-- 🕒 LIVE CLOCK -->
+    <div id="live-clock"></div>
+
+    <!-- 🔄 MAIN CONTAINER (SWAPPED ORDER) -->
+    <div class="main-container">
+      <!-- 🚗 SMART PARKING INFORMATION (Now Left Side) -->
+      <div class="parking-info">
+        <!-- HERO SECTION -->
+        <div class="parking-hero">
+          <div class="hero-badge" data-key="heroBadge">
+            <span class="status-dot"></span>
+            SMART PARKING SYSTEM
+          </div>
+
+          <h1>
+            <span data-key="heroTitle1">Park Smarter.</span><br />
+            <span data-key="heroTitle2">Travel Better.</span>
+          </h1>
+
+          <p class="hero-description" data-key="heroDesc">
+            Experience a seamless parking solution with real-time slot
+            availability, easy reservations, FASTag-enabled entry and secure
+            digital payments.
+          </p>
+        </div>
+
+        <!-- FEATURES -->
+        <div class="parking-features">
+          <div class="feature-item">
+            <div class="feature-icon">◉</div>
+            <div>
+              <h3 data-key="feature1Title">Real-Time Availability</h3>
+              <p data-key="feature1Desc">
+                Check available parking slots instantly.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+              <h3 data-key="feature2Title">Easy Slot Reservation</h3>
+              <p data-key="feature2Desc">
+                Reserve your preferred parking slot in seconds.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <div>
+              <h3 data-key="feature3Title">FASTag Enabled</h3>
+              <p data-key="feature3Desc">
+                Enjoy faster and convenient entry and exit.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🔐</div>
+            <div>
+              <h3 data-key="feature4Title">Secure Transactions</h3>
+              <p data-key="feature4Desc">
+                Protected digital records and payments.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PARKING STATISTICS -->
+        <div class="parking-stats">
+          <div class="stat-card">
+            <div class="stat-number" id="total-slots">50</div>
+            <div class="stat-label" data-key="statTotal">TOTAL SLOTS</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number available" id="available-slots">24</div>
+            <div class="stat-label" data-key="statAvailable">AVAILABLE</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number occupied" id="occupied-slots">18</div>
+            <div class="stat-label" data-key="statOccupied">OCCUPIED</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number reserved" id="reserved-slots">08</div>
+            <div class="stat-label" data-key="statReserved">RESERVED</div>
+          </div>
+        </div>
+
+        <!-- TAGLINE -->
+        <div class="parking-tagline">
+          <span>🚗</span>
+          <span data-key="tagline">Find. Reserve. Park. Pay.</span>
+        </div>
+      </div>
+
+      <!-- 🔐 LOGIN SECTION (Now Right Side) -->
+      <div class="login-wrapper">
+        <div class="login-container">
+          <h1 id="login-title" data-key="loginTitle">Smart Parking Login</h1>
+
+          <p
+            class="login-subtitle"
+            id="login-subtitle"
+            data-key="loginSubtitle"
+          >
+            Secure Smart Parking Management!
+          </p>
+
+          <!-- Username -->
+          <input type="text" id="username" placeholder="Username" required />
+
+          <!-- Password -->
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+
+          <!-- Buttons -->
+          <div class="actions">
+            <button id="login-btn" data-key="loginBtn">Login</button>
+            <button id="register-btn" data-key="registerBtn">Register</button>
+          </div>
+
+          <!-- Login Footer -->
+          <p class="footer-text" id="footer-text" data-key="footerText">
+            Blockchain-enabled • Secure • Smart Parking
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- © FOOTER -->
+    <footer class="site-footer">
+      <p data-key="footerCopy">
+        © 2026 Smart Parking System • All Rights Reserved
+      </p>
+    </footer>
+
+    <!-- MAIN JAVASCRIPT -->
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+    <!-- 🕒 LIVE CLOCK SCRIPT -->
+    <script>
+      function updateClock() {
+        const now = new Date();
+        const date = now.toLocaleDateString("en-GB");
+        const time = now.toLocaleTimeString("en-GB", { hour12: false });
+        const clock = document.getElementById("live-clock");
+        if (clock) {
+          clock.textContent = `${date} | ${time}`;
+        }
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
