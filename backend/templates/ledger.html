@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockchain Ledger</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body class="login-page dashboard-screen">
+    <div class="dashboard-wrapper">
+      <div class="dashboard-container">
+        <!-- Header -->
+        <h1 class="page-title">📒 Blockchain Transaction Ledger</h1>
+
+        <!-- Ledger Section -->
+        <section class="section-box ledger-section">
+          <div id="ledger" class="ledger-box"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer>© 2025 Smart Parking System | Blockchain Enabled</footer>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+      // Auto-load blockchain ledger when page opens
+      window.addEventListener("DOMContentLoaded", () => {
+        fetchChain();
+      });
+    </script>
+  </body>
+</html>

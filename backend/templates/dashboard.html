@@ -40,7 +40,12 @@
           <button type="button" id="refresh-slots" class="btn-primary">
             🔄 Refresh Slots
           </button>
-          <button type="button" id="view-ledger" class="btn-primary">
+          <button
+            type="button"
+            id="view-ledger"
+            class="btn-primary"
+            onclick="window.location.href='/ledger_page'"
+          >
             📜 View Blockchain Ledger
           </button>
           <button
@@ -73,12 +78,6 @@
             <div>Slot 14</div>
             <div>Slot 15</div>
           </div>
-        </section>
-
-        <!-- Ledger Section -->
-        <section class="section-box ledger-section" style="display: none">
-          <h2 class="section-title">📒 Blockchain Transaction Ledger</h2>
-          <div id="ledger" class="ledger-box"></div>
         </section>
 
         <!-- Map Section -->
@@ -161,7 +160,6 @@
         if (!text) return;
         document.querySelector(".page-title").textContent = text.title;
         document.querySelector(".slots-section h2").textContent = text.slots;
-        document.querySelector(".ledger-section h2").textContent = text.ledger;
         document.getElementById("refresh-slots").textContent = text.refresh;
         document.getElementById("view-ledger").textContent = text.viewLedger;
         document.getElementById("logout-btn").textContent = text.logout;
@@ -170,55 +168,15 @@
           .forEach(
             (slot, i) => (slot.textContent = `${text.slotLabel} ${i + 1}`),
           );
-        document
-          .querySelectorAll(".ledger-box .block-title")
-          .forEach(
-            (block, i) => (block.textContent = `${text.blockLabel} #${i + 1}`),
-          );
         document.documentElement.lang = language;
         localStorage.setItem("selectedLanguage", language);
       }
 
-      // ---------------------- AUTO APPLY SAVED LANGUAGE + VIEW LEDGER ----------------------
+      // ---------------------- AUTO APPLY SAVED LANGUAGE ----------------------
       window.addEventListener("DOMContentLoaded", () => {
         const savedLang = localStorage.getItem("selectedLanguage") || "en";
         document.getElementById("languageSelect").value = savedLang;
         changeDashboardLanguage(savedLang);
-
-        const ledgerBtn = document.getElementById("view-ledger");
-        const ledgerSection = document.querySelector(".ledger-section");
-        const ledgerBox = document.getElementById("ledger");
-
-        if (ledgerBtn && ledgerSection) {
-          ledgerBtn.addEventListener("click", async () => {
-            if (
-              ledgerSection.style.display === "none" ||
-              ledgerSection.style.display === ""
-            ) {
-              ledgerSection.style.display = "block";
-              try {
-                const res = await fetch(`${apiBase}/ledger`);
-                const data = await res.json();
-                ledgerBox.innerHTML = "";
-                data.forEach((block, index) => {
-                  const blockEl = document.createElement("div");
-                  blockEl.className = "block-title";
-                  blockEl.innerHTML = `
-                    <strong>Block #${block.index || index + 1}</strong><br>
-                    Timestamp: ${block.timestamp}<br>
-                    Data: ${JSON.stringify(block.data)}<br>
-                    Hash: ${block.hash}
-                  `;
-                  ledgerBox.appendChild(blockEl);
-                });
-              } catch (err) {
-                alert("Error loading ledger: " + err.message);
-              }
-            } else {
-              ledgerSection.style.display = "none";
-            }
-          });
-        }
       });
     </script>
   </body>

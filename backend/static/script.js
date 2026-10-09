@@ -539,7 +539,7 @@ async function fetchChain() {
 
   try {
     console.log("🔗 Fetching blockchain ledger...");
-    console.log("🌐 Blockchain URL:", `${apiBase}/chain`);
+    console.log("🌐 Blockchain URL:", `${apiBase}/ledger`);
 
     ledger.innerHTML = `
       <p style="color:#58a6ff;">
@@ -547,7 +547,8 @@ async function fetchChain() {
       </p>
     `;
 
-    const res = await fetch(`${apiBase}/chain?_=${Date.now()}`, {
+    // ✅ Corrected endpoint: /ledger instead of /chain
+    const res = await fetch(`${apiBase}/ledger?_=${Date.now()}`, {
       method: "GET",
       cache: "no-store",
       headers: { "Accept": "application/json" },
@@ -625,6 +626,7 @@ async function fetchChain() {
     `;
   }
 }
+
 
 
 
@@ -1809,59 +1811,49 @@ document.addEventListener(
     }
 
 
-    // ======================================================
+        // ======================================================
     // 🔄 REFRESH SLOTS
     // ======================================================
 
-    const refreshSlots =
-      document.getElementById(
-        "refresh-slots"
-      );
+    const refreshSlots = document.getElementById("refresh-slots");
 
-
-    console.log(
-      "Refresh button:",
-      refreshSlots
-    );
-
+    console.log("Refresh button:", refreshSlots);
 
     if (refreshSlots) {
+      refreshSlots.addEventListener("click", async function () {
+        console.log("🖱️ REFRESH BUTTON CLICKED");
 
-      refreshSlots.addEventListener(
-        "click",
-        async function () {
+        try {
+          // Call your existing fetchSlots() function
+          const slots = await fetchSlots();
 
-          console.log(
-            "🖱️ REFRESH BUTTON CLICKED"
-          );
+          console.log("✅ fetchSlots() completed successfully");
 
+          // --------------------------------------------------
+          // 🔁 Reset slot colors to green (unbook)
+          // --------------------------------------------------
+          const slotElements = document.querySelectorAll(".slots-grid div");
 
-          try {
+          slotElements.forEach((slotEl, i) => {
+            const slot = slots ? slots[i] : null;
 
-            await fetchSlots();
+            // If backend returns slot data, use it; otherwise just reset all to green
+            if (!slot || !slot.booked) {
+              slotEl.style.backgroundColor = "#00cc66"; // green
+              slotEl.style.color = "#000";
+            } else {
+              slotEl.style.backgroundColor = "#ff4d4d"; // red
+              slotEl.style.color = "#fff";
+            }
+          });
 
-            console.log(
-              "✅ fetchSlots() completed successfully"
-            );
-
-          } catch (error) {
-
-            console.error(
-              "❌ fetchSlots() FAILED:",
-              error
-            );
-
-          }
-
+          console.log("✅ Slots refreshed and colors updated.");
+        } catch (error) {
+          console.error("❌ fetchSlots() FAILED:", error);
         }
-      );
-
+      });
     } else {
-
-      console.log(
-        "ℹ️ Refresh button not present on this page."
-      );
-
+      console.log("ℹ️ Refresh button not present on this page.");
     }
 
 
@@ -1913,3 +1905,22 @@ document.addEventListener(
 
   }
 );
+
+function togglePassword(inputId, eyeId)
+{
+    const input = document.getElementById(inputId);
+    const eye = document.getElementById(eyeId);
+
+    if (input.type === "password")
+    {
+        input.type = "text";
+
+        eye.src = "{{ url_for('static', filename='images/view.png') }}";
+    }
+    else
+    {
+        input.type = "password";
+
+        eye.src = "{{ url_for('static', filename='images/hide.png') }}";
+    }
+}

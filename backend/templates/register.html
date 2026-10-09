@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Smart Parking Signup</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body class="login-page">
+    <div class="register-wrapper">
+      <div class="login-container">
+        <h1 class="page-title">📝 Create Your Account</h1>
+
+        <p class="login-subtitle">Secure Smart Parking Registration!</p>
+
+        <!-- Username -->
+        <input type="text" id="username" placeholder="👤 Username" required />
+
+        <br /><br />
+
+        <!-- Password -->
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="password"
+            placeholder="🔑 Enter Password"
+            required
+          />
+
+          <img
+            src="{{ url_for('static', filename='images/hide.png') }}"
+            class="toggle-eye"
+            id="password-eye"
+            alt="Toggle Password"
+          />
+        </div>
+
+        <br /><br />
+
+        <!-- Confirm Password -->
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="🔑 Confirm Password"
+            required
+          />
+
+          <img
+            srcss="toggle-eye"
+            id="confirm-eye"
+            alt="Toggle Password"
+            onclick="togglePassword('confirm-password', 'confirm-eye')"
+          />
+        </div>
+
+        <br /><br />
+
+        <div class="actions">
+          <button id="signup-btn" class="btn-primary">✅ Sign Up</button>
+
+          <button
+            type="button"
+            class="btn-danger"
+            onclick="window.location.href = '/'"
+          >
+            ⬅️ Back to Login
+          </button>
+        </div>
+
+        <p class="footer-text">
+          © 2026 Smart Parking System | Blockchain Enabled
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword(id) {
+        const input = document.getElementById(id);
+
+        if (input.type === "password") {
+          input.type = "text";
+        } else {
+          input.type = "password";
+        }
+      }
+
+      document
+        .getElementById("signup-btn")
+        .addEventListener("click", async () => {
+          const username = document.getElementById("username").value.trim();
+
+          const password = document.getElementById("password").value.trim();
+
+          const confirmPassword = document
+            .getElementById("confirm-password")
+            .value.trim();
+
+          if (!username || !password) {
+            alert("Please fill all fields");
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+          }
+
+          try {
+            const response = await fetch("/register", {
+              method: "POST",
+
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify({
+                username: username,
+                password: password,
+              }),
+            });
+
+            const result = await response.json();
+
+            alert(result.message);
+
+            if (response.ok) {
+              window.location.href = "/";
+            }
+          } catch (error) {
+            console.error(error);
+            alert("Registration failed");
+          }
+        });
+    </script>
+  </body>
+</html>

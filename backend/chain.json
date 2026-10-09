@@ -1832,5 +1832,320 @@
     "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
     "previous_hash": "b6f492df6442f53175784c3d63fe890954ecd106ee1b328d4b2a57b738c279ec",
     "hash": "112add9a2fe49f0e209549c659c52d4e3cf1115e7293d109ca5d74a228c2c709"
+  },
+  {
+    "index": 262,
+    "timestamp": "2026-09-08 22:30:48",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "112add9a2fe49f0e209549c659c52d4e3cf1115e7293d109ca5d74a228c2c709",
+    "hash": "d179b53edddb20a91665fa5d1eb919cd848fc25b6d0f5dfd2420d22d28eae816"
+  },
+  {
+    "index": 263,
+    "timestamp": "2026-09-08 22:31:15",
+    "data": "👤 New user registered: tushar",
+    "previous_hash": "d179b53edddb20a91665fa5d1eb919cd848fc25b6d0f5dfd2420d22d28eae816",
+    "hash": "95926be95e3572b9a633510538b4c5fa4d116bed4d02cb700dd07dbd54cd5569"
+  },
+  {
+    "index": 264,
+    "timestamp": "2026-09-08 22:31:36",
+    "data": "🔐 tushar logged in.",
+    "previous_hash": "95926be95e3572b9a633510538b4c5fa4d116bed4d02cb700dd07dbd54cd5569",
+    "hash": "cd7b64d244c90a9925409db01d9137c35001c0d35babd3059dc4ab5a03551c21"
+  },
+  {
+    "index": 265,
+    "timestamp": "2026-09-08 22:32:20",
+    "data": "👤 New user registered: arya",
+    "previous_hash": "cd7b64d244c90a9925409db01d9137c35001c0d35babd3059dc4ab5a03551c21",
+    "hash": "a54a71074b66bb5194418e184412d50f1b031b24eda8e0166426b1972df4a34b"
+  },
+  {
+    "index": 266,
+    "timestamp": "2026-09-08 22:32:26",
+    "data": "🚗 arya registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "a54a71074b66bb5194418e184412d50f1b031b24eda8e0166426b1972df4a34b",
+    "hash": "8d0536198ba5ae1a4152e2b9c572d41888911c44d9f18d4831d500a1d4bd060d"
+  },
+  {
+    "index": 267,
+    "timestamp": "2026-09-08 22:52:23",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "8d0536198ba5ae1a4152e2b9c572d41888911c44d9f18d4831d500a1d4bd060d",
+    "hash": "22eaca2da561c89c957339103d4f517015ab1b58091483c32bef4fa2796ebbbd"
+  },
+  {
+    "index": 268,
+    "timestamp": "2026-09-08 22:52:28",
+    "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "22eaca2da561c89c957339103d4f517015ab1b58091483c32bef4fa2796ebbbd",
+    "hash": "52a6e4b484e0c4304d190b6e651b4117588b9c8cf5b05466e755d82301bb498c"
+  },
+  {
+    "index": 269,
+    "timestamp": "2026-09-08 22:53:01",
+    "data": "🅿️ Tushar booked Slot 1 at 2026-09-08 22:53:01",
+    "previous_hash": "52a6e4b484e0c4304d190b6e651b4117588b9c8cf5b05466e755d82301bb498c",
+    "hash": "84d7044755ed0cbac19c117b949f0fa5c6c74b814901bad244f63e11df347d78"
+  },
+  {
+    "index": 270,
+    "timestamp": "2026-09-08 22:53:19",
+    "data": "💰 Tushar released Slot 1. Duration: 1 min, Paid ₹1.0",
+    "previous_hash": "84d7044755ed0cbac19c117b949f0fa5c6c74b814901bad244f63e11df347d78",
+    "hash": "8da2bf1f9036059396627fc09d9a617b9e4cd9533d09eecc2c7806cc34d305f8"
+  },
+  {
+    "index": 271,
+    "timestamp": "2026-09-08 22:53:19",
+    "data": "💳 Payment successful | Slot: 1 | Amount: ₹1.00 | Transaction ID: TXN1788888199487668830",
+    "previous_hash": "8da2bf1f9036059396627fc09d9a617b9e4cd9533d09eecc2c7806cc34d305f8",
+    "hash": "2f35044b2cafa5db087c6d680c194df185ed1ca85a4cb5db61652fa3c2bc3d5a"
+  },
+  {
+    "index": 272,
+    "timestamp": "2026-09-08 22:53:24",
+    "data": "🅿️ Tushar booked Slot 2 at 2026-09-08 22:53:24",
+    "previous_hash": "2f35044b2cafa5db087c6d680c194df185ed1ca85a4cb5db61652fa3c2bc3d5a",
+    "hash": "3138126a7d858e307f4fabb3d3e54fc6572d0cb9cbd928d90cd9bb4532547adc"
+  },
+  {
+    "index": 273,
+    "timestamp": "2026-09-08 23:02:42",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "3138126a7d858e307f4fabb3d3e54fc6572d0cb9cbd928d90cd9bb4532547adc",
+    "hash": "138bf447fdd4c78f8ec4ef15a7c92ad59b0e6b6d4de1703d78b82a9df36f1080"
+  },
+  {
+    "index": 274,
+    "timestamp": "2026-09-08 23:02:49",
+    "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "138bf447fdd4c78f8ec4ef15a7c92ad59b0e6b6d4de1703d78b82a9df36f1080",
+    "hash": "3a0d304ca413a184e0931505b45b904703caf696ea23a936756ac0c46d0a842f"
+  },
+  {
+    "index": 275,
+    "timestamp": "2026-09-08 23:03:03",
+    "data": "🅿️ Tushar booked Slot 1 at 2026-09-08 23:03:03",
+    "previous_hash": "3a0d304ca413a184e0931505b45b904703caf696ea23a936756ac0c46d0a842f",
+    "hash": "a21cda3ebbdd8e12e1109a62f169d8cd56eb0faaefba94dcea69162bd924cbb2"
+  },
+  {
+    "index": 276,
+    "timestamp": "2026-09-08 23:03:28",
+    "data": "💰 Tushar released Slot 1. Duration: 1 min, Paid ₹1.0",
+    "previous_hash": "a21cda3ebbdd8e12e1109a62f169d8cd56eb0faaefba94dcea69162bd924cbb2",
+    "hash": "900d4cb0ae39bc7360920d6d83fdcbccc067d5748101614ae02b39830b4e2084"
+  },
+  {
+    "index": 277,
+    "timestamp": "2026-09-08 23:03:28",
+    "data": "💳 Payment successful | Slot: 1 | Amount: ₹1.00 | Transaction ID: TXN1788888808379312042",
+    "previous_hash": "900d4cb0ae39bc7360920d6d83fdcbccc067d5748101614ae02b39830b4e2084",
+    "hash": "5590fa3da71afdcb204065412799d74178019a219207f173818f810bca19899e"
+  },
+  {
+    "index": 278,
+    "timestamp": "2026-09-08 23:03:34",
+    "data": "🅿️ Tushar booked Slot 1 at 2026-09-08 23:03:34",
+    "previous_hash": "5590fa3da71afdcb204065412799d74178019a219207f173818f810bca19899e",
+    "hash": "5864f0465fa0c089eaba97d7e8b9cb5cd1e5a24da7f0541c7d57cd2349f247e6"
+  },
+  {
+    "index": 279,
+    "timestamp": "2026-09-08 23:04:13",
+    "data": "👤 New user registered: Tus",
+    "previous_hash": "5864f0465fa0c089eaba97d7e8b9cb5cd1e5a24da7f0541c7d57cd2349f247e6",
+    "hash": "9344960953d5a99fb94c62552c807dd45c0df5d710fe9c06fc8d5d6f98e72dae"
+  },
+  {
+    "index": 280,
+    "timestamp": "2026-09-08 23:04:19",
+    "data": "🚗 Tus registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "9344960953d5a99fb94c62552c807dd45c0df5d710fe9c06fc8d5d6f98e72dae",
+    "hash": "90cb6b92c937859be8b90d9b9e98230a9c9fa4afb3cdd8e0a3e3691940a04c1c"
+  },
+  {
+    "index": 281,
+    "timestamp": "2026-09-08 23:04:27",
+    "data": "🅿️ Tus booked Slot 3 at 2026-09-08 23:04:27",
+    "previous_hash": "90cb6b92c937859be8b90d9b9e98230a9c9fa4afb3cdd8e0a3e3691940a04c1c",
+    "hash": "5643adf96d48fea023777d71ceed3054a93672dd4ffa9033948a9badbbdb9c70"
+  },
+  {
+    "index": 282,
+    "timestamp": "2026-09-08 23:04:54",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "5643adf96d48fea023777d71ceed3054a93672dd4ffa9033948a9badbbdb9c70",
+    "hash": "a643142f43a3f973c409d327f16f1802b882f8a4b25bc6162951b87c536173fa"
+  },
+  {
+    "index": 283,
+    "timestamp": "2026-09-08 23:04:58",
+    "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "a643142f43a3f973c409d327f16f1802b882f8a4b25bc6162951b87c536173fa",
+    "hash": "fd3bf85f4e834a4f67262dc90ad2851957dbb852562bca8b5f1dd54ca2eb9cba"
+  },
+  {
+    "index": 284,
+    "timestamp": "2026-09-08 23:05:02",
+    "data": "🅿️ Tushar booked Slot 9 at 2026-09-08 23:05:02",
+    "previous_hash": "fd3bf85f4e834a4f67262dc90ad2851957dbb852562bca8b5f1dd54ca2eb9cba",
+    "hash": "d71faf5070adedab6722d1f0dbe2d1b9980d7a486b1a630ff885887997e79d1e"
+  },
+  {
+    "index": 285,
+    "timestamp": "2026-09-10 14:17:33",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "d71faf5070adedab6722d1f0dbe2d1b9980d7a486b1a630ff885887997e79d1e",
+    "hash": "d85956a7b4f9cf7436d76157917419fbe58dc9c8f8e901bf21461e7baa37bc9a"
+  },
+  {
+    "index": 286,
+    "timestamp": "2026-09-10 14:17:46",
+    "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "d85956a7b4f9cf7436d76157917419fbe58dc9c8f8e901bf21461e7baa37bc9a",
+    "hash": "13df2449660f4980bcbadeb0d4f12eca3f23152824f80604102a5a75805eb921"
+  },
+  {
+    "index": 287,
+    "timestamp": "2026-09-10 14:17:55",
+    "data": "🅿️ Tushar booked Slot 1 at 2026-09-10 14:17:55",
+    "previous_hash": "13df2449660f4980bcbadeb0d4f12eca3f23152824f80604102a5a75805eb921",
+    "hash": "1b98a7f3334763b6d93c57edb4eb935ef24d25cea78dca2272795f2cc511d38c"
+  },
+  {
+    "index": 288,
+    "timestamp": "2026-09-10 14:18:57",
+    "data": "💰 Tushar released Slot 1. Duration: 2 min, Paid ₹1.0",
+    "previous_hash": "1b98a7f3334763b6d93c57edb4eb935ef24d25cea78dca2272795f2cc511d38c",
+    "hash": "46efb3a62d51c797f439aa60dfff67e5b73dc95e2211c6a94e003a4fe3a4d285"
+  },
+  {
+    "index": 289,
+    "timestamp": "2026-09-10 14:18:57",
+    "data": "💳 Payment successful | Slot: 1 | Amount: ₹1.00 | Transaction ID: TXN1789030137249191505",
+    "previous_hash": "46efb3a62d51c797f439aa60dfff67e5b73dc95e2211c6a94e003a4fe3a4d285",
+    "hash": "253a6cf3e79dd6b1288bb31c96f48135de14ac67d87e92c4716b76818020ef82"
+  },
+  {
+    "index": 290,
+    "timestamp": "2026-10-07 22:35:36",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "253a6cf3e79dd6b1288bb31c96f48135de14ac67d87e92c4716b76818020ef82",
+    "hash": "c6ea5f0ae2374fed3c89fa697d8c875a4e647ec704470d0262e3587ee5af6293"
+  },
+  {
+    "index": 291,
+    "timestamp": "2026-10-07 23:53:19",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "c6ea5f0ae2374fed3c89fa697d8c875a4e647ec704470d0262e3587ee5af6293",
+    "hash": "480caa101076c3e7d8451820ac27e648229d5cf227efcb19da8d6526a645649d"
+  },
+  {
+    "index": 292,
+    "timestamp": "2026-10-07 23:53:28",
+    "data": "🔐 Tushar logged in.",
+    "previous_hash": "480caa101076c3e7d8451820ac27e648229d5cf227efcb19da8d6526a645649d",
+    "hash": "e5b1033a9b525f7f7a3c6253f8410e444920b3e47cb2dc28fdfd5a04f490b457"
+  },
+  {
+    "index": 293,
+    "timestamp": "2026-10-08 19:37:59",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "e5b1033a9b525f7f7a3c6253f8410e444920b3e47cb2dc28fdfd5a04f490b457",
+    "hash": "5d7a8050bc0ef111764657d5632aa2ea136fe22a989a0429bccdb7a60b52dbf0"
+  },
+  {
+    "index": 294,
+    "timestamp": "2026-10-08 19:38:12",
+    "data": "🔐 Tushar logged in.",
+    "previous_hash": "5d7a8050bc0ef111764657d5632aa2ea136fe22a989a0429bccdb7a60b52dbf0",
+    "hash": "1f34a23a6b07817f30bd621ef086ced00fa4e55b76ee5459a5c3b499646a5b92"
+  },
+  {
+    "index": 295,
+    "timestamp": "2026-10-08 19:38:27",
+    "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "1f34a23a6b07817f30bd621ef086ced00fa4e55b76ee5459a5c3b499646a5b92",
+    "hash": "ad2d50d9fd73a4860e213322f14ace4d6ffa6694ff1ba6a2c4565c9ac368b8b7"
+  },
+  {
+    "index": 296,
+    "timestamp": "2026-10-08 19:38:30",
+    "data": "🅿️ Tushar booked Slot 1 at 2026-10-08 19:38:30",
+    "previous_hash": "ad2d50d9fd73a4860e213322f14ace4d6ffa6694ff1ba6a2c4565c9ac368b8b7",
+    "hash": "8e7c109b35da8c2233f529fabbde5a8b4c9e94c9269c57a193dc21df813f8eed"
+  },
+  {
+    "index": 297,
+    "timestamp": "2026-10-09 22:31:21",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "8e7c109b35da8c2233f529fabbde5a8b4c9e94c9269c57a193dc21df813f8eed",
+    "hash": "1b7239e88c261e2ffed95701e3a9454a5fd4870a0b215aa529b40c6fde7c25ce"
+  },
+  {
+    "index": 298,
+    "timestamp": "2026-10-09 22:31:29",
+    "data": "🔐 Tushar logged in.",
+    "previous_hash": "1b7239e88c261e2ffed95701e3a9454a5fd4870a0b215aa529b40c6fde7c25ce",
+    "hash": "f5f04d77ba235f325a4c0cd832ab42e371dc4a80ed673163276de97f0a8239a3"
+  },
+  {
+    "index": 299,
+    "timestamp": "2026-10-09 22:32:04",
+    "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "f5f04d77ba235f325a4c0cd832ab42e371dc4a80ed673163276de97f0a8239a3",
+    "hash": "17453f034da04b50613edccd2c5c2455dea1dbe78c35c551448bb25efc338d65"
+  },
+  {
+    "index": 300,
+    "timestamp": "2026-10-09 22:32:08",
+    "data": "🅿️ Tushar booked Slot 12 at 2026-10-09 22:32:08",
+    "previous_hash": "17453f034da04b50613edccd2c5c2455dea1dbe78c35c551448bb25efc338d65",
+    "hash": "3ec29b683b3319802d7e6af8631f3fa12eaa1493e51550c6efd952d172a06702"
+  },
+  {
+    "index": 301,
+    "timestamp": "2026-10-09 22:32:32",
+    "data": "💰 Tushar released Slot 12. Duration: 1 min, Paid ₹1.0",
+    "previous_hash": "3ec29b683b3319802d7e6af8631f3fa12eaa1493e51550c6efd952d172a06702",
+    "hash": "7a782c0b376365e1618c4c3091ef31d841e067451eab1798e3b2111128b88375"
+  },
+  {
+    "index": 302,
+    "timestamp": "2026-10-09 22:32:32",
+    "data": "💳 Payment successful | Slot: 12 | Amount: ₹1.00 | Transaction ID: TXN1791565352193131784",
+    "previous_hash": "7a782c0b376365e1618c4c3091ef31d841e067451eab1798e3b2111128b88375",
+    "hash": "e98ae56f864c91e09de301fc8abc090bdfd8e30866061ad1df69ee85690f1e53"
+  },
+  {
+    "index": 303,
+    "timestamp": "2026-10-09 23:04:07",
+    "data": "👤 New user registered: Tushar",
+    "previous_hash": "e98ae56f864c91e09de301fc8abc090bdfd8e30866061ad1df69ee85690f1e53",
+    "hash": "6ab9ee7193dcf54816b58ab454ad3ec58d23d4733086201c0b1a528b1c90cf29"
+  },
+  {
+    "index": 304,
+    "timestamp": "2026-10-09 23:05:04",
+    "data": "🔐 Tushar logged in.",
+    "previous_hash": "6ab9ee7193dcf54816b58ab454ad3ec58d23d4733086201c0b1a528b1c90cf29",
+    "hash": "01cdcd808ce108e72957b34eff898e17bbdbfc68ca7878343676d836e5259611"
+  },
+  {
+    "index": 305,
+    "timestamp": "2026-10-09 23:05:30",
+    "data": "👤 New user registered: kptushar",
+    "previous_hash": "01cdcd808ce108e72957b34eff898e17bbdbfc68ca7878343676d836e5259611",
+    "hash": "28cc542d412b74957645a8186fbd7796f01b181b7c91e4a947674178d8b52c4a"
+  },
+  {
+    "index": 306,
+    "timestamp": "2026-10-09 23:05:48",
+    "data": "🔐 kptushar logged in.",
+    "previous_hash": "28cc542d412b74957645a8186fbd7796f01b181b7c91e4a947674178d8b52c4a",
+    "hash": "1593ba8b69141d3aca125cfed75987ea1743a0339146f31a17345689a41d943a"
   }
 ]

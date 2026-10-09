@@ -2869,3 +2869,68 @@ body:not(.login-page) {
 body:not(.login-page)::after {
   content: none !important;
 }
+
+/* ==========================================
+   REGISTER PAGE CENTER ALIGNMENT
+========================================== */
+
+/* REGISTER PAGE ONLY */
+
+.register-wrapper{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    width: 420px;
+}
+
+.password-wrapper{
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input{
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 45px;
+}
+
+.toggle-eye{
+    position: absolute;
+    right: 15px;
+    top: 42%;
+    transform: translateY(-50%);
+
+    width: 22px;
+    height: 22px;
+
+    cursor: pointer;
+    z-index: 10;
+
+    transition: all 0.25s ease;
+}
+
+.toggle-eye:hover{
+    transform: translateY(-50%) scale(1.15);
+}
+
+.eye-click{
+    animation: eyePulse 0.25s ease;
+}
+
+@keyframes eyePulse{
+
+    0%{
+        transform: translateY(-50%) scale(1);
+    }
+
+    50%{
+        transform: translateY(-50%) scale(1.25);
+    }
+
+    100%{
+        transform: translateY(-50%) scale(1);
+    }
+
+}

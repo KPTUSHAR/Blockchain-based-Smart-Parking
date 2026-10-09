@@ -26,9 +26,9 @@
     <!-- 🕒 LIVE CLOCK -->
     <div id="live-clock"></div>
 
-    <!-- 🔄 MAIN CONTAINER (SWAPPED ORDER) -->
+    <!-- 🔄 MAIN CONTAINER -->
     <div class="main-container">
-      <!-- 🚗 SMART PARKING INFORMATION (Now Left Side) -->
+      <!-- 🚗 SMART PARKING INFORMATION -->
       <div class="parking-info">
         <!-- HERO SECTION -->
         <div class="parking-hero">
@@ -109,8 +109,8 @@
             <div class="stat-label" data-key="statOccupied">OCCUPIED</div>
           </div>
 
-          <div class="stat-card">
-            <div class="stat-number reserved" id="reserved-slots">08</div>
+          <div class="stat-card reserved">
+            <div class="stat-number" id="reserved-slots">08</div>
             <div class="stat-label" data-key="statReserved">RESERVED</div>
           </div>
         </div>
@@ -122,7 +122,7 @@
         </div>
       </div>
 
-      <!-- 🔐 LOGIN SECTION (Now Right Side) -->
+      <!-- 🔐 LOGIN SECTION -->
       <div class="login-wrapper">
         <div class="login-container">
           <h1 id="login-title" data-key="loginTitle">Smart Parking Login</h1>
@@ -149,7 +149,14 @@
           <!-- Buttons -->
           <div class="actions">
             <button id="login-btn" data-key="loginBtn">Login</button>
-            <button id="register-btn" data-key="registerBtn">Register</button>
+            <!-- ✅ Register button now redirects to signup page -->
+            <button
+              id="register-btn"
+              data-key="registerBtn"
+              onclick="window.location.href = '/register_page'"
+            >
+              Register
+            </button>
           </div>
 
           <!-- Login Footer -->

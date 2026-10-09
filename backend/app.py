@@ -1,3 +1,6 @@
+# =========================================================
+# IMPORTS & APP SETUP
+# =========================================================
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from datetime import datetime
@@ -6,11 +9,22 @@ import hashlib
 import math
 import json
 import os
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
-
+# Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
+# Firebase Setup
+cred = credentials.Certificate(
+    "firebase-key.json"
+)
+
+firebase_admin.initialize_app(cred)
+
+db = firestore.client()
 
 # -------------------------
 # Config
@@ -24,27 +38,14 @@ SLOT_COUNT = 15
 # Block & Blockchain
 # -------------------------
 class Block:
-    def __init__(
-        self,
-        index: int,
-        timestamp: str,
-        data: str,
-        previous_hash: str,
-        hash_value: str = None
-    ):
+    def __init__(self, index: int, timestamp: str, data: str, previous_hash: str, hash_value: str = None):
         self.index = index
         self.timestamp = timestamp
         self.data = data
         self.previous_hash = previous_hash
-
-        # If hash_value is provided while loading from disk, use it.
-        # Otherwise calculate a new hash.
         self.hash = hash_value if hash_value else self.calculate_hash()
 
     def calculate_hash(self) -> str:
-        """
-        Calculate SHA256 hash of the block contents.
-        """
         text = f"{self.index}|{self.timestamp}|{self.data}|{self.previous_hash}"
         return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
@@ -67,22 +68,14 @@ class Block:
             hash_value=d.get("hash")
         )
 
-
 class Blockchain:
     def __init__(self):
         self.chain = []
-
-        # Try to load persisted chain.
-        # Otherwise create genesis block.
         if os.path.exists(CHAIN_FILE):
             try:
                 self.load_chain()
             except Exception as e:
-                print(
-                    "Failed to load chain.json — "
-                    "creating a fresh genesis block. Error:",
-                    e
-                )
+                print("Failed to load chain.json — creating a fresh genesis block. Error:", e)
                 self.create_genesis_block()
                 self.save_chain()
         else:
@@ -90,102 +83,47 @@ class Blockchain:
             self.save_chain()
 
     def create_genesis_block(self):
-        genesis = Block(
-            0,
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "🚀 Genesis Block",
-            "0"
-        )
-
+        genesis = Block(0, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "🚀 Genesis Block", "0")
         genesis.hash = genesis.calculate_hash()
         self.chain = [genesis]
 
     def add_block(self, data: str):
         prev = self.chain[-1]
-
         new_index = prev.index + 1
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-        new_block = Block(
-            new_index,
-            timestamp,
-            data,
-            prev.hash
-        )
-
+        new_block = Block(new_index, timestamp, data, prev.hash)
         new_block.hash = new_block.calculate_hash()
-
         self.chain.append(new_block)
         self.save_chain()
-
         return new_block
 
     def get_chain(self):
         return [b.to_dict() for b in self.chain]
 
     def is_valid(self):
-        """
-        Validate the blockchain.
-
-        Checks:
-        1. Stored hash equals recalculated hash.
-        2. previous_hash matches the previous block's hash.
-        """
-
         for i in range(1, len(self.chain)):
             curr = self.chain[i]
             prev = self.chain[i - 1]
-
-            # Check hash
             if curr.hash != curr.calculate_hash():
-                return False, {
-                    "index": i,
-                    "reason": "Invalid hash (tampered data?)"
-                }
-
-            # Check previous hash
+                return False, {"index": i, "reason": "Invalid hash"}
             if curr.previous_hash != prev.hash:
-                return False, {
-                    "index": i,
-                    "reason": "Previous hash mismatch (chain broken)"
-                }
-
+                return False, {"index": i, "reason": "Previous hash mismatch"}
         return True, None
 
     def save_chain(self):
-        """
-        Persist blockchain to chain.json.
-        """
-
         with open(CHAIN_FILE, "w", encoding="utf-8") as f:
-            json.dump(
-                self.get_chain(),
-                f,
-                indent=2,
-                ensure_ascii=False
-            )
+            json.dump(self.get_chain(), f, indent=2, ensure_ascii=False)
 
     def load_chain(self):
-        """
-        Load blockchain from chain.json.
-        """
-
         with open(CHAIN_FILE, "r", encoding="utf-8") as f:
             raw = json.load(f)
-
         loaded = []
-
         for item in raw:
             b = Block.from_dict(item)
-
-            # If hash is missing, calculate it.
             if not b.hash:
                 b.hash = b.calculate_hash()
-
             loaded.append(b)
-
         self.chain = loaded
-
 
 # Instantiate blockchain
 blockchain = Blockchain()
@@ -193,50 +131,24 @@ blockchain = Blockchain()
 # -------------------------
 # Parking State
 # -------------------------
-SLOTS = [
-    {
-        "id": i,
-        "booked": False,
-        "user": None,
-        "start_time": None,
-        "end_time": None
-    }
-    for i in range(1, SLOT_COUNT + 1)
-]
-
+SLOTS = [{"id": i, "booked": False, "user": None, "start_time": None, "end_time": None} for i in range(1, SLOT_COUNT + 1)]
 users = {}       # username -> password
 vehicles = {}    # username -> {vehicles: [...], slot_limit: n}
-
 
 # -------------------------
 # Helpers
 # -------------------------
 def compute_bill_minutes(start_iso: str, end_iso: str):
     fmt = "%Y-%m-%d %H:%M:%S"
-
     start = datetime.strptime(start_iso, fmt)
     end = datetime.strptime(end_iso, fmt)
-
     seconds = (end - start).total_seconds()
-
-    minutes = max(
-        1,
-        math.ceil(seconds / 60.0)
-    )
-
+    minutes = max(1, math.ceil(seconds / 60.0))
     price_per_min = PARKING_RATE / 60.0
-
-    bill = round(
-        minutes * price_per_min,
-        2
-    )
-
-    # Enforce minimum charge
+    bill = round(minutes * price_per_min, 2)
     if bill < MINIMUM_CHARGE:
         bill = MINIMUM_CHARGE
-
     return minutes, bill
-
 
 # =========================================================
 # AUTHENTICATION & USER
@@ -255,12 +167,17 @@ def register():
             "message": "Provide username and password"
         }), 400
 
-    if username in users:
+    user_ref = db.collection("users").document(username)
+
+    if user_ref.get().exists:
         return jsonify({
             "message": "Username already exists"
         }), 400
 
-    users[username] = password
+    user_ref.set({
+        "username": username,
+        "password": password
+    })
 
     blockchain.add_block(
         f"👤 New user registered: {username}"
@@ -279,20 +196,27 @@ def login():
     username = data.get("username", "").strip()
     password = data.get("password", "").strip()
 
-    if users.get(username) == password:
+    user_ref = db.collection("users").document(username)
 
-        blockchain.add_block(
-            f"🔐 {username} logged in."
-        )
+    user = user_ref.get()
 
-        return jsonify({
-            "message": "Login successful!"
-        })
+    if user.exists:
+
+        user_data = user.to_dict()
+
+        if user_data["password"] == password:
+
+            blockchain.add_block(
+                f"🔐 {username} logged in."
+            )
+
+            return jsonify({
+                "message": "Login successful!"
+            })
 
     return jsonify({
         "message": "Invalid username/password"
     }), 401
-
 
 # =========================================================
 # VEHICLE DETAILS
@@ -637,47 +561,56 @@ def payment_success():
 
 
 
-
-
 # =========================================================
 # FRONTEND ROUTES
 # =========================================================
-
 @app.route("/")
 def index():
     return render_template("login.html")
-
 
 @app.route("/register_page")
 def register_page():
     return render_template("register.html")
 
-
 @app.route("/vehicle_form")
 def vehicle_form():
     return render_template("vehicle_form.html")
-
 
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
 
 # =========================================================
-# LEDGER ENDPOINT (FIX)
+# LEDGER PAGE
+# =========================================================
+@app.route("/ledger_page")
+def ledger_page():
+    return render_template("ledger.html")
+
+# =========================================================
+# LEDGER ENDPOINT
 # =========================================================
 @app.route("/ledger", methods=["GET"])
 def get_ledger():
+    # Ensure blockchain object exists before calling get_chain()
     return jsonify(blockchain.get_chain())
 
 
+@app.route("/firebase-test")
+def firebase_test():
+
+    db.collection("test").document("sample").set(
+        {
+            "message": "Firebase Connected Successfully"
+        }
+    )
+
+    return "Firebase Working Successfully!"
 
 
 # =========================================================
 # RUN FLASK
 # =========================================================
-
 if __name__ == "__main__":
-
-    app.run(
-        debug=True
-    )
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
