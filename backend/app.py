@@ -18,9 +18,13 @@ app = Flask(__name__)
 CORS(app)
 
 # Firebase Setup
-cred = credentials.Certificate(
-    "firebase-key.json"
-)
+firebase_config = os.environ.get("FIREBASE_CONFIG")
+
+if firebase_config:
+    cred_dict = json.loads(firebase_config)
+    cred = credentials.Certificate(cred_dict)
+else:
+    cred = credentials.Certificate("firebase-key.json")
 
 firebase_admin.initialize_app(cred)
 
@@ -606,6 +610,7 @@ def firebase_test():
     )
 
     return "Firebase Working Successfully!"
+
 
 
 # =========================================================
