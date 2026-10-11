@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CCTV Access | Smart Parking System</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body class="cctv-page">
+    <!-- ================= BACKGROUND VIDEO & OVERLAY ================= -->
+    <div class="video-bg-container">
+      <video autoplay muted loop playsinline preload="auto" class="video-bg">
+        <source
+          src="{{ url_for('static', filename='videos/cctv-wallpaper.mp4') }}"
+          type="video/mp4"
+        />
+      </video>
+      <div class="video-bg-overlay"></div>
+    </div>
+
+    <!-- ================= TOP NAVIGATION ================= -->
+    <header class="cctv-header">
+      <a href="/" class="cctv-brand"> 📹 CCTV Access </a>
+      <div class="cctv-clock" id="cctv-clock"></div>
+      <div class="cctv-security-badge">
+        <span class="cctv-status-dot"></span>
+        Secure Access
+      </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="cctv-main">
+      <!-- LEFT INFORMATION SECTION -->
+      <section class="cctv-info">
+        <div class="cctv-badge">SMART PARKING SYSTEM</div>
+        <h1>
+          Monitor Smarter.<br />
+          Stay Secure.
+        </h1>
+        <p class="cctv-description">
+          Access your assigned parking camera using the credentials provided
+          with your parking receipt. Experience convenient camera access through
+          your Smart Parking System.
+        </p>
+
+        <!-- FEATURE CARDS -->
+        <div class="cctv-features">
+          <div class="cctv-feature-card">
+            <div class="cctv-feature-icon">📹</div>
+            <div>
+              <h3>Camera Access</h3>
+              <p>Access your assigned parking camera.</p>
+            </div>
+          </div>
+
+          <div class="cctv-feature-card">
+            <div class="cctv-feature-icon">🔐</div>
+            <div>
+              <h3>Secure Authentication</h3>
+              <p>Authenticate using your assigned credentials.</p>
+            </div>
+          </div>
+
+          <div class="cctv-feature-card">
+            <div class="cctv-feature-icon">🅿️</div>
+            <div>
+              <h3>Smart Parking</h3>
+              <p>Access camera services through your parking system.</p>
+            </div>
+          </div>
+
+          <div class="cctv-feature-card">
+            <div class="cctv-feature-icon">⚡</div>
+            <div>
+              <h3>Simple Access</h3>
+              <p>Enter your credentials to continue.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cctv-tagline">📹 Monitor. Protect. Park.</div>
+      </section>
+
+      <!-- RIGHT LOGIN CARD -->
+      <section class="cctv-login-card">
+        <div class="cctv-camera-icon">📹</div>
+        <h2>CCTV Access</h2>
+        <p class="cctv-login-subtitle">Secure Camera Authentication</p>
+
+        <form id="cctv-login-form">
+          <div class="cctv-input-group">
+            <label for="username"> CCTV Username </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter CCTV username"
+              autocomplete="username"
+              required
+            />
+          </div>
+
+          <div class="cctv-input-group">
+            <label for="password"> CCTV Password </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter CCTV password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+
+          <div
+            id="cctv-error"
+            class="cctv-message cctv-error"
+            role="alert"
+            hidden
+          ></div>
+          <div
+            id="cctv-success"
+            class="cctv-message cctv-success"
+            role="status"
+            hidden
+          ></div>
+
+          <button type="submit" id="cctv-submit" class="cctv-access-button">
+            <span id="cctv-submit-text">Access Camera</span>
+            <span class="cctv-arrow">→</span>
+          </button>
+
+          <button
+            type="button"
+            class="cctv-back-button"
+            onclick="window.location.href = '/'"
+          >
+            ← Back to Smart Parking
+          </button>
+        </form>
+
+        <div class="cctv-card-footer">Secure Access · Smart Parking System</div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="cctv-footer">
+      © 2026 Smart Parking System · All Rights Reserved
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+      function updateCCTVClock() {
+        const clock = document.getElementById("cctv-clock");
+        clock.textContent = new Date().toLocaleString("en-IN", {
+          dateStyle: "short",
+          timeStyle: "medium",
+        });
+      }
+      updateCCTVClock();
+      setInterval(updateCCTVClock, 1000);
+
+      const cctvForm = document.getElementById("cctv-login-form");
+      const cctvSubmit = document.getElementById("cctv-submit");
+      const cctvSubmitText = document.getElementById("cctv-submit-text");
+      const cctvError = document.getElementById("cctv-error");
+      const cctvSuccess = document.getElementById("cctv-success");
+
+      function showCCTVError(message) {
+        cctvError.textContent = message;
+        cctvError.hidden = false;
+        cctvSuccess.hidden = true;
+      }
+
+      function showCCTVSuccess(message) {
+        cctvSuccess.textContent = message;
+        cctvSuccess.hidden = false;
+        cctvError.hidden = true;
+      }
+
+      cctvForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (!username || !password) {
+          showCCTVError("Please enter your CCTV username and password.");
+          return;
+        }
+
+        cctvError.hidden = true;
+        cctvSuccess.hidden = true;
+        cctvSubmit.disabled = true;
+        cctvSubmitText.textContent = "Connecting...";
+
+        try {
+          const params = new URLSearchParams({
+            user: username,
+            pass: password,
+          });
+          window.location.href = `/camera-view?${params.toString()}`;
+        } catch (error) {
+          showCCTVError("Unable to connect. Please try again.");
+          cctvSubmit.disabled = false;
+          cctvSubmitText.textContent = "Access Camera";
+        }
+      });
+    </script>
+  </body>
+</html>

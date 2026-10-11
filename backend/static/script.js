@@ -1906,21 +1906,29 @@ document.addEventListener(
   }
 );
 
-function togglePassword(inputId, eyeId)
-{
+
+
+function togglePassword(inputId, eyeId) {
+
     const input = document.getElementById(inputId);
     const eye = document.getElementById(eyeId);
 
-    if (input.type === "password")
-    {
+    if (input.type === "password") {
+
         input.type = "text";
 
-        eye.src = "{{ url_for('static', filename='images/view.png') }}";
-    }
-    else
-    {
+        eye.setAttribute(
+            "src",
+            "/static/images/view.png?t=" + new Date().getTime()
+        );
+
+    } else {
+
         input.type = "password";
 
-        eye.src = "{{ url_for('static', filename='images/hide.png') }}";
+        eye.setAttribute(
+            "src",
+            "/static/images/hide.png?t=" + new Date().getTime()
+        );
     }
 }

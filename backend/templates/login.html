@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title data-key="pageTitle">Smart Parking Login</title>
-
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
@@ -13,6 +11,69 @@
   </head>
 
   <body class="login-page">
+    <!-- ================= 📹 CCTV SLIDE-OUT TOGGLE BUTTON ================= -->
+    <button
+      id="sidebar-toggle-btn"
+      class="sidebar-toggle-btn"
+      aria-label="Toggle Sidebar"
+    >
+      <span class="toggle-icon">☰</span>
+    </button>
+
+    <!-- ================= 📂 SLIDING SIDEBAR WINDOW (FROM LEFT) ================= -->
+    <aside id="cctv-sidebar" class="cctv-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand"></div>
+        <button
+          id="sidebar-close-btn"
+          class="sidebar-close-btn"
+          aria-label="Close Sidebar"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="sidebar-content">
+        <p class="sidebar-desc">
+          Live CCTV surveillance & security portal. Access live parking video
+          feeds using your assigned credentials.
+        </p>
+
+        <div class="sidebar-menu">
+          <a href="/cctv-login" class="sidebar-item">
+            <span class="sidebar-item-icon">🔐</span>
+            <div class="sidebar-item-text">
+              <strong>CCTV Login</strong>
+              <small>Authenticate for camera view</small>
+            </div>
+          </a>
+
+          <a href="/" class="sidebar-item">
+            <span class="sidebar-item-icon">🚗</span>
+            <div class="sidebar-item-text">
+              <strong>Parking Portal</strong>
+              <small>Main dashboard & login</small>
+            </div>
+          </a>
+        </div>
+
+        <div class="sidebar-info-card">
+          <h4>Smart Parking CCTV</h4>
+          <p>
+            Your slot camera credentials are provided on your parking ticket
+            receipt. Enter them in the portal to verify live status.
+          </p>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <p>© 2026 Smart Parking System • Surveillance Interface</p>
+      </div>
+    </aside>
+
+    <!-- BACKDROP BLUR OVERLAY -->
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
     <!-- 🌐 LANGUAGE SELECTOR -->
     <div class="language-selector">
       <span class="language-icon">🌐</span>
@@ -149,7 +210,6 @@
           <!-- Buttons -->
           <div class="actions">
             <button id="login-btn" data-key="loginBtn">Login</button>
-            <!-- ✅ Register button now redirects to signup page -->
             <button
               id="register-btn"
               data-key="registerBtn"
@@ -177,8 +237,9 @@
     <!-- MAIN JAVASCRIPT -->
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 
-    <!-- 🕒 LIVE CLOCK SCRIPT -->
+    <!-- 🕒 CLOCK SCRIPT & 📂 SIDEBAR TOGGLE SCRIPT -->
     <script>
+      // Clock
       function updateClock() {
         const now = new Date();
         const date = now.toLocaleDateString("en-GB");
@@ -190,6 +251,32 @@
       }
       updateClock();
       setInterval(updateClock, 1000);
+
+      // Slide-Out Sidebar Controls
+      const toggleBtn = document.getElementById("sidebar-toggle-btn");
+      const closeBtn = document.getElementById("sidebar-close-btn");
+      const sidebar = document.getElementById("cctv-sidebar");
+      const backdrop = document.getElementById("sidebar-backdrop");
+
+      function openSidebar() {
+        sidebar.classList.add("open");
+        backdrop.classList.add("active");
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("open");
+        backdrop.classList.remove("active");
+      }
+
+      if (toggleBtn) toggleBtn.addEventListener("click", openSidebar);
+      if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
+      if (backdrop) backdrop.addEventListener("click", closeSidebar);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sidebar.classList.contains("open")) {
+          closeSidebar();
+        }
+      });
     </script>
   </body>
 </html>

@@ -170,8 +170,64 @@ def generate_receipt(slot_number, start_time, end_time, amount, transaction_id):
     p.setLineWidth(1.5)
     p.line(325, 276, 562, 276)
 
+# ================= CCTV ACCESS DETAILS =================
+
+    camera_username = f"CAM_SLOT_{int(slot_number):02d}"
+
+    camera_password = f"SPARK{int(slot_number):02d}"
+
+    camera_url = (
+        "https://smart-parking-llsp.onrender.com/cctv-login"
+    )
+
+    p.setFont(font_bold, 11)
+    p.setFillColor(primary_brown)
+
+    p.drawString(
+        50,
+        170,
+        "CCTV ACCESS DETAILS"
+    )
+
+    p.setFont(font_reg, 9)
+    p.setFillColor(colors.black)
+
+    p.drawString(
+        50,
+        150,
+        f"CCTV Username : {camera_username}"
+    )
+
+    p.drawString(
+        50,
+        136,
+        f"CCTV Password : {camera_password}"
+    )
+
+    p.drawString(
+        50,
+        122,
+        "Portal :"
+    )
+
+    p.setFillColor(colors.blue)
+
+    p.drawString(
+        90,
+        122,
+        camera_url
+    )
+
+    p.setFillColor(colors.black)
+
+    p.drawString(
+        50,
+        106,
+        "Use these credentials to monitor your vehicle."
+    )
+
     # ================= 6. DIGITAL SIGNATURE SECTION =================
-    sig_box_x, sig_box_y, sig_box_w, sig_box_h = 320, 185, 242, 38
+    sig_box_x, sig_box_y, sig_box_w, sig_box_h = 320, 110, 242, 38
     p.setFillColor(colors.HexColor("#F9F9F9"))
     p.setStrokeColor(colors.HexColor("#D1B8A8"))
     p.setLineWidth(0.8)
@@ -184,14 +240,17 @@ def generate_receipt(slot_number, start_time, end_time, amount, transaction_id):
     p.setFillColor(colors.HexColor("#555555"))
     p.drawCentredString(sig_box_x + (sig_box_w / 2.0), sig_box_y + 9, "Smart Parking Systems | Verified Cryptographic Seal")
 
+
+    
+
     # ================= 7. FOOTER (THANK YOU & COPYRIGHT) =================
     p.setFont(font_italic, 10)
     p.setFillColor(primary_brown)
-    p.drawCentredString(width / 2.0, 120, "Thank you for the payment!")
+    p.drawCentredString(width / 2.0, 80, "Thank you for the payment!")
 
     p.setFont(font_reg, 8.5)
     p.setFillColor(colors.HexColor("#777777"))
-    p.drawCentredString(width / 2.0, 103, "© 2026 Smart Parking System | All Rights Reserved")
+    p.drawCentredString(width / 2.0, 63, "© 2026 Smart Parking System | All Rights Reserved")
 
     p.showPage()
     p.save()

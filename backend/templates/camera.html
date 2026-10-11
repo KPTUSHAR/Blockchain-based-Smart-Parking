@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Parking CCTV | Smart Parking System</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body class="camera-page">
+    <div class="video-bg-container">
+      <video autoplay muted loop playsinline preload="auto" class="video-bg">
+        <source
+          src="{{ url_for('static', filename='videos/cctv-wallpaper.mp4') }}"
+          type="video/mp4"
+        />
+      </video>
+      <div class="video-bg-overlay"></div>
+    </div>
+    <div class="camera-container">
+      <!-- LEFT SIDE: INTRODUCTION -->
+      <div class="camera-left">
+        <div class="badge">SMART PARKING CCTV</div>
+
+        <h1>Live Parking Surveillance</h1>
+
+        <p>
+          Monitor parking slots through an intelligent surveillance interface
+          designed to support secure vehicle monitoring and efficient parking
+          management.
+        </p>
+
+        <div class="camera-features">
+          <div class="camera-feature-card">
+            <div class="feature-icon">📹</div>
+            <div>
+              <h3>Live Monitoring</h3>
+              <p>View live CCTV footage for your parking slot.</p>
+            </div>
+          </div>
+
+          <div class="camera-feature-card">
+            <div class="feature-icon">🔒</div>
+            <div>
+              <h3>Enhanced Security</h3>
+              <p>Secure parking surveillance and monitoring.</p>
+            </div>
+          </div>
+
+          <div class="camera-feature-card">
+            <div class="feature-icon">🅿️</div>
+            <div>
+              <h3>Slot Tracking</h3>
+              <p>Instant visibility for assigned parking slots.</p>
+            </div>
+          </div>
+
+          <div class="camera-feature-card">
+            <div class="feature-icon">⚡</div>
+            <div>
+              <h3>Realtime Feed</h3>
+              <p>Continuous monitoring through CCTV access.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /camera-left -->
+
+      <!-- RIGHT SIDE: CCTV CAMERA CARD -->
+      <div class="camera-card">
+        <!-- CARD HEADER -->
+        <div class="camera-header">
+          <div>
+            <h2>Smart Parking Surveillance System</h2>
+          </div>
+          <div class="live-status">
+            <span class="live-dot"></span>
+            LIVE
+          </div>
+        </div>
+
+        <!-- SLOT INFORMATION -->
+        <div class="camera-slot-info">
+          <div>
+            <h3>Parking Slot {{ slot }}</h3>
+          </div>
+          <span class="camera-status">Camera View</span>
+        </div>
+
+        <!-- VIDEO FEED -->
+        <div class="camera-video-wrapper">
+          <video
+            class="camera-feed"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            preload="metadata"
+          >
+            <source
+              src="{{ url_for('static', filename='videos/cctv-demo2.mp4') }}"
+              type="video/mp4"
+            />
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        <!-- /camera-video-wrapper -->
+
+        <!-- NAVIGATION BUTTON -->
+        <div class="camera-buttons">
+          <a href="{{ url_for('cctv_login') }}" class="camera-back-btn">
+            <span aria-hidden="true">&larr;</span>
+            Back to CCTV Login
+          </a>
+        </div>
+
+        <p class="camera-footer">
+          SMART PARKING SYSTEM &bull; SURVEILLANCE INTERFACE
+        </p>
+      </div>
+      <!-- /camera-card -->
+    </div>
+    <!-- /camera-container -->
+  </body>
+</html>

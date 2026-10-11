@@ -34,8 +34,8 @@ db = firestore.client()
 # Config
 # -------------------------
 CHAIN_FILE = "chain.json"   # persisted chain
-PARKING_RATE = 10.0         # rupees per hour
-MINIMUM_CHARGE = 1.0        # minimum charge in rupees
+PARKING_RATE = 60.0         # rupees per hour
+MINIMUM_CHARGE = 100.0        # minimum charge in rupees
 SLOT_COUNT = 15
 
 # -------------------------
@@ -610,6 +610,54 @@ def firebase_test():
     )
 
     return "Firebase Working Successfully!"
+
+
+
+@app.route("/cctv-login")
+def cctv_login():
+
+    return render_template(
+        "cctv_login.html"
+    )
+
+
+@app.route("/camera-view")
+def camera_view():
+
+    username = request.args.get("user")
+    password = request.args.get("pass")
+
+    cameras = {
+        "CAM_SLOT_01": "SPARK01",
+        "CAM_SLOT_02": "SPARK02",
+        "CAM_SLOT_03": "SPARK03",
+        "CAM_SLOT_04": "SPARK04",
+        "CAM_SLOT_05": "SPARK05",
+        "CAM_SLOT_06": "SPARK06",
+        "CAM_SLOT_07": "SPARK07",
+        "CAM_SLOT_08": "SPARK08",
+        "CAM_SLOT_09": "SPARK09",
+        "CAM_SLOT_10": "SPARK10",
+        "CAM_SLOT_11": "SPARK11",
+        "CAM_SLOT_12": "SPARK12",
+        "CAM_SLOT_13": "SPARK13",
+        "CAM_SLOT_14": "SPARK14",
+        "CAM_SLOT_15": "SPARK15"
+    }
+
+    if cameras.get(username) == password:
+
+        slot = username.replace(
+            "CAM_SLOT_",
+            ""
+        )
+
+        return render_template(
+            "camera.html",
+            slot=slot
+        )
+
+    return "Invalid CCTV Login"
 
 
 

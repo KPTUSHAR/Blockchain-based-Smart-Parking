@@ -38,6 +38,7 @@
             class="toggle-eye"
             id="password-eye"
             alt="Toggle Password"
+            onclick="togglePassword('password', 'password-eye')"
           />
         </div>
 
@@ -53,7 +54,8 @@
           />
 
           <img
-            srcss="toggle-eye"
+            src="{{ url_for('static', filename='images/hide.png') }}"
+            class="toggle-eye"
             id="confirm-eye"
             alt="Toggle Password"
             onclick="togglePassword('confirm-password', 'confirm-eye')"
