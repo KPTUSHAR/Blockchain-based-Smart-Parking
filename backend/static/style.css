@@ -5542,3 +5542,1090 @@ body.camera-page {
   opacity: 1;
   visibility: visible;
 }
+
+
+
+
+
+
+/* =========================================================
+   REALISTIC PARKING LOT LAYOUT STYLING
+   ========================================================= */
+
+.slots-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.parking-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.legend-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-status.green { background: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.6); }
+.dot-status.red { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
+
+/* The Full Parking Bay Asphalt Floor */
+.parking-lot-canvas {
+  background: radial-gradient(circle at 50% 50%, #171d26 0%, #0d1117 100%);
+  border: 2px solid #2d3748;
+  border-radius: 16px;
+  padding: 24px 20px;
+  position: relative;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Road Entry / Exit Gate markers */
+.road-gateway {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #38bdf8;
+  opacity: 0.85;
+}
+.entry-gate { justify-content: flex-start; }
+.exit-gate { justify-content: flex-end; }
+.gate-arrow { font-size: 1rem; color: #facc15; }
+
+/* Grid arrangement for Stalls */
+.slots-grid.parking-lot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px 18px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Central Driving Lane Divider (Road Simulation) */
+.parking-driving-lane {
+  background: #111620;
+  border-top: 2px dashed rgba(250, 204, 21, 0.4);
+  border-bottom: 2px dashed rgba(250, 204, 21, 0.4);
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+.lane-direction {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+/* Individual Parking Stall Design */
+.slots-grid div,
+.slots-grid button {
+  min-height: 72px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+
+  /* Parking Stall Lines (White lines left and right, open on entry) */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 3px solid #facc15; /* Front bumper yellow parking curb */
+  border-left: 3px solid #e2e8f0;    /* Left stall white line */
+  border-right: 3px solid #e2e8f0;   /* Right stall white line */
+}
+
+/* Default / Available Slot */
+.slots-grid div,
+.slots-grid button:not([disabled]) {
+  background: rgba(34, 197, 94, 0.16) !important;
+  color: #4ade80 !important;
+  box-shadow: inset 0 0 10px rgba(34, 197, 94, 0.12);
+}
+
+.slots-grid div:hover,
+.slots-grid button:not([disabled]):hover {
+  background: rgba(34, 197, 94, 0.32) !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.25);
+  border-bottom-color: #4ade80;
+}
+
+/* Occupied Slot (Red) */
+.slots-grid div.occupied,
+.slots-grid button[disabled],
+.slots-grid button.occupied {
+  background: rgba(239, 68, 68, 0.18) !important;
+  color: #f87171 !important;
+  cursor: not-allowed !important;
+  border-bottom-color: #ef4444 !important;
+  opacity: 0.78;
+}
+
+/* Responsive adjustment for tablets & mobile */
+@media (max-width: 900px) {
+  .slots-grid.parking-lot-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .slots-grid.parking-lot-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+
+/* =========================================================
+   AUTHENTIC SATELLITE BIRD'S-EYE PARKING DECK
+   ========================================================= */
+
+.slots-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.parking-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.legend-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-status.green { background: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.7); }
+.dot-status.red { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.7); }
+
+/* Realistic Asphalt Ground Surface */
+.satellite-deck {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(20, 27, 38, 0.85) 0%, rgba(10, 14, 20, 0.98) 100%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 6px),
+    #0c1017;
+  border: 2px solid #2e3848;
+  border-radius: 18px;
+  padding: 24px 20px;
+  position: relative;
+  box-shadow: inset 0 0 45px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Satellite Grid Coordinates Background */
+.satellite-deck::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* Access Roads & Runway Markings */
+.deck-road {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 8px;
+}
+
+.road-marker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.exit-marker {
+  justify-content: flex-end;
+}
+
+.road-badge {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.road-arrow {
+  color: #facc15;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+}
+
+.highway-divider {
+  width: 100%;
+  height: 2px;
+  border-bottom: 2px dashed rgba(250, 204, 21, 0.45);
+}
+
+/* Satellite Grid for Individual Stalls */
+.slots-grid.satellite-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 16px 14px !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Top-Down Parking Stall (Vertical Bay) */
+.satellite-grid div,
+.satellite-grid button {
+  min-height: 98px !important;
+  padding: 8px 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  position: relative !important;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+
+  /* Satellite Pavement Markings: Thick white stall divider lines & yellow curb bumper */
+  border-top: 4px solid #facc15 !important;              /* Yellow tire barrier */
+  border-left: 3px solid #f8fafc !important;             /* White stall divider */
+  border-right: 3px solid #f8fafc !important;            /* White stall divider */
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2) !important; /* Road entry opening */
+}
+
+/* Top-Down Parked Car Silhouette Indicator */
+.satellite-grid div::before,
+.satellite-grid button::before {
+  content: "🚗";
+  font-size: 1.45rem;
+  margin-top: 4px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.85));
+  transform: rotate(180deg); /* Head-in parking angle */
+}
+
+/* Available Stall State (Green Satellite Radar Glow) */
+.satellite-grid div:not(.occupied),
+.satellite-grid button:not([disabled]) {
+  background: rgba(34, 197, 94, 0.1) !important;
+  color: #4ade80 !important;
+  box-shadow: inset 0 0 12px rgba(34, 197, 94, 0.08) !important;
+}
+
+.satellite-grid div:not(.occupied):hover,
+.satellite-grid button:not([disabled]):hover {
+  background: rgba(34, 197, 94, 0.28) !important;
+  border-top-color: #4ade80 !important;
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3) !important;
+}
+
+/* Occupied Stall State (Red Parking Hazard Warning) */
+.satellite-grid div.occupied,
+.satellite-grid button[disabled],
+.satellite-grid button.occupied {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+  border-top-color: #ef4444 !important;
+  cursor: not-allowed !important;
+  opacity: 0.85;
+}
+
+.satellite-grid div.occupied::before,
+.satellite-grid button[disabled]::before {
+  content: "🚙";
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.85));
+}
+
+/* Responsive Scaling */
+@media (max-width: 850px) {
+  .slots-grid.satellite-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .slots-grid.satellite-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+
+
+
+/* =========================================================
+   AUTHENTIC SATELLITE BIRD'S-EYE PARKING DECK
+   ========================================================= */
+
+.slots-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.parking-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.legend-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-status.green { background: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.7); }
+.dot-status.red { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.7); }
+
+/* Realistic Asphalt Ground Surface */
+.satellite-deck {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(20, 27, 38, 0.85) 0%, rgba(10, 14, 20, 0.98) 100%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 6px),
+    #0c1017;
+  border: 2px solid #2e3848;
+  border-radius: 18px;
+  padding: 24px 20px;
+  position: relative;
+  box-shadow: inset 0 0 45px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Satellite Grid Coordinates Background */
+.satellite-deck::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* =========================================================
+   ANIMATED ROADWAYS (ENTRY & EXIT GATES)
+   ========================================================= */
+
+.animated-road {
+  background: #0a0e14;
+  border-radius: 8px;
+  border: 1px solid #1e293b;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  padding: 6px 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.road-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+}
+
+/* Animated Road Dash-Lines */
+.road-markings-lane {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.moving-stripes {
+  width: 200%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #facc15 0px,
+    #facc15 28px,
+    transparent 28px,
+    transparent 56px
+  );
+  /* Flows rightwards to match the Entry and Exit arrows */
+  animation: driveRoadRight 1.2s linear infinite;
+}
+
+@keyframes driveRoadRight {
+  0% {
+    transform: translateX(-56px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.road-marker {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.exit-marker {
+  margin-left: auto;
+}
+
+.road-badge {
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #38bdf8;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.road-arrow {
+  color: #facc15;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  text-shadow: 0 0 6px rgba(250, 204, 21, 0.6);
+}
+
+/* =========================================================
+   STALLS GRID & VEHICLE ORIENTATION
+   ========================================================= */
+
+.slots-grid.satellite-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 16px 14px !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Top-Down Parking Stall */
+.satellite-grid div,
+.satellite-grid button {
+  min-height: 98px !important;
+  padding: 8px 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  position: relative !important;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+
+  /* Satellite Pavement Markings: yellow bumper & white divider lines */
+  border-top: 4px solid #facc15 !important;
+  border-left: 3px solid #f8fafc !important;
+  border-right: 3px solid #f8fafc !important;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Upright Car Icons */
+.satellite-grid div::before,
+.satellite-grid button::before {
+  content: "🚗";
+  font-size: 1.45rem;
+  margin-top: 4px;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.85));
+  transform: rotate(0deg) !important;
+  display: block;
+}
+
+/* Available Stall State */
+.satellite-grid div:not(.occupied),
+.satellite-grid button:not([disabled]) {
+  background: rgba(34, 197, 94, 0.1) !important;
+  color: #4ade80 !important;
+  box-shadow: inset 0 0 12px rgba(34, 197, 94, 0.08) !important;
+}
+
+.satellite-grid div:not(.occupied):hover,
+.satellite-grid button:not([disabled]):hover {
+  background: rgba(34, 197, 94, 0.28) !important;
+  border-top-color: #4ade80 !important;
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3) !important;
+}
+
+/* Occupied Stall State */
+.satellite-grid div.occupied,
+.satellite-grid button[disabled],
+.satellite-grid button.occupied {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+  border-top-color: #ef4444 !important;
+  cursor: not-allowed !important;
+  opacity: 0.85;
+}
+
+.satellite-grid div.occupied::before,
+.satellite-grid button[disabled]::before,
+.satellite-grid button.occupied::before {
+  content: "🚙";
+  transform: rotate(0deg) !important;
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.85));
+}
+
+/* Responsive Scaling */
+@media (max-width: 850px) {
+  .slots-grid.satellite-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .slots-grid.satellite-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+
+/* =========================================================
+   2. SELECTED SLOT STATE (TURNS RED ON CLICK)
+   ========================================================= */
+
+/* When a slot has the .selected or .occupied class, turn it RED */
+.satellite-grid div.selected,
+.satellite-grid button.selected,
+.satellite-grid div.occupied,
+.satellite-grid button.occupied,
+.satellite-grid button[disabled] {
+  background: rgba(239, 68, 68, 0.22) !important;
+  color: #f87171 !important;
+  border-top-color: #ef4444 !important;
+  border-bottom: 2px solid #ef4444 !important;
+  box-shadow: 
+    0 0 16px rgba(239, 68, 68, 0.35),
+    inset 0 0 12px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Switch to blue parked vehicle for selected / occupied stalls */
+.satellite-grid div.selected::before,
+.satellite-grid button.selected::before,
+.satellite-grid div.occupied::before,
+.satellite-grid button.occupied::before,
+.satellite-grid button[disabled]::before {
+  content: "🚙";
+  transform: rotate(0deg) !important;
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.9));
+}
+
+
+
+
+
+/* =========================================================
+   ENTERPRISE BLOCKCHAIN EXPLORER STYLING
+   ========================================================= */
+
+.ledger-wrapper {
+  max-width: 1050px !important;
+  width: 95% !important;
+  margin: 20px auto !important;
+}
+
+.ledger-container {
+  background: rgba(13, 17, 23, 0.95) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  border-radius: 18px !important;
+  padding: 28px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), inset 0 0 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 1. Navigation & Network Bar */
+.ledger-nav-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  padding: 8px 18px !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+}
+
+.ledger-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.ledger-status-pill strong {
+  color: #38bdf8;
+}
+
+.live-pulse {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+/* 2. Header & Metrics Panel */
+.ledger-header-panel {
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.ledger-header-panel .page-title {
+  margin: 0 0 6px 0 !important;
+  font-size: 1.6rem !important;
+  color: #f8fafc !important;
+}
+
+.ledger-subtitle {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  margin: 0 0 18px 0;
+}
+
+.ledger-stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stat-pill {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pill-label {
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+.pill-val {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.sync-status {
+  color: #4ade80;
+}
+
+/* 3. Ledger Stream & Card Structure */
+.ledger-section {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.ledger-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+/* Custom scrollbar for modern feel */
+.ledger-box::-webkit-scrollbar {
+  width: 6px;
+}
+.ledger-box::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+/* Targets each block inserted by fetchChain() */
+.ledger-box > div,
+.ledger-box .block-card {
+  background: #111827 !important;
+  border: 1px solid rgba(56, 189, 248, 0.15) !important;
+  border-left: 4px solid #0284c7 !important;
+  border-radius: 10px !important;
+  padding: 16px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  color: #cbd5e1 !important;
+  font-size: 0.88rem !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+  transition: all 0.2s ease !important;
+}
+
+.ledger-box > div:hover,
+.ledger-box .block-card:hover {
+  border-color: rgba(56, 189, 248, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Monospace formatting for hashes inside blocks */
+.ledger-box code,
+.ledger-box pre,
+.ledger-box .hash-text {
+  font-family: "Consolas", "Courier New", monospace !important;
+  color: #94a3b8 !important;
+  font-size: 0.78rem !important;
+  word-break: break-all !important;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+
+/* =========================================================
+   DASHBOARD CENTER PANEL EXPANSION & SPACING FIX
+   ========================================================= */
+
+/* 1. Expand the outer wrapper width across the viewport */
+.dashboard-screen .dashboard-wrapper {
+  width: 96% !important;
+  max-width: 1220px !important; /* Expands width to reduce large side gaps */
+  margin: 30px auto !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+}
+
+/* 2. Style the main card to match executive widescreen proportions */
+.dashboard-screen .dashboard-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 32px 36px !important;
+  background: rgba(15, 23, 42, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(56, 189, 248, 0.22) !important;
+  border-radius: 24px !important;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. Allow inner sections (slots, satellite deck, map) to utilize the full width */
+.dashboard-screen .section-box {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 24px !important;
+  border-radius: 18px !important;
+  margin-top: 24px !important;
+}
+
+/* 4. Let the satellite deck breathe comfortably */
+.satellite-deck {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 24px 28px !important;
+}
+
+/* Stalls grid automatically stretches symmetrically across the newly widened panel */
+.slots-grid.satellite-grid {
+  gap: 16px 20px !important;
+}
+
+/* =========================================================
+   MULTI-LOCATION PARKING HUB STYLING
+   ========================================================= */
+
+.map-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section-subtitle {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  margin: 4px 0 0 0;
+}
+
+.btn-open-maps {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.22s ease;
+}
+
+.btn-open-maps:hover {
+  background: #38bdf8;
+  color: #0b111e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+}
+
+/* 3-Column Interactive Location Switcher */
+.location-switcher-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.location-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.location-card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.location-card.active {
+  background: rgba(14, 165, 233, 0.12);
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+}
+
+.location-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.location-status.active-badge {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.location-title {
+  margin: 0;
+  font-size: 1rem;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.location-address {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.location-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #38bdf8;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.custom-map-frame {
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 900px) {
+  .location-switcher-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* =========================================================
+   LOCATION SELECTOR & SATELLITE REFRESH SCAN ANIMATION
+   ========================================================= */
+
+/* Location Cards Container Placed Directly Above Deck */
+.location-selector-section {
+  margin-bottom: 24px !important;
+}
+
+/* Radar Sweep Line Overlay (Hidden by Default) */
+.satellite-deck {
+  position: relative;
+  overflow: hidden;
+}
+
+.radar-sweep-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #38bdf8, #00d2ff, transparent);
+  box-shadow: 0 0 16px #38bdf8, 0 0 30px #00d2ff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Scanning Animation when card is clicked or slots refresh */
+.satellite-deck.scanning-active .radar-sweep-bar {
+  opacity: 1;
+  animation: radarScanSweep 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes radarScanSweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Slot Ripple Effect during reload */
+.slots-grid.slots-reloading {
+  animation: deckPulseScan 0.85s ease-in-out;
+}
+
+@keyframes deckPulseScan {
+  0% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  30% {
+    filter: brightness(1.35) drop-shadow(0 0 12px rgba(56, 189, 248, 0.4));
+    transform: scale(0.995);
+  }
+  70% {
+    filter: brightness(1.2);
+  }
+  100% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+}
+
+/* Stagger bounce on each stall during scan */
+.slots-reloading div,
+.slots-reloading button {
+  animation: stallFlicker 0.6s ease-in-out;
+}
+
+@keyframes stallFlicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(2px);
+  }
+}

@@ -37,7 +37,12 @@
 
         <!-- Action Buttons -->
         <div class="btn-row center-btns">
-          <button type="button" id="refresh-slots" class="btn-primary">
+          <button
+            type="button"
+            id="refresh-slots"
+            class="btn-primary"
+            onclick="triggerSlotDeckRefresh()"
+          >
             🔄 Refresh Slots
           </button>
           <button
@@ -58,36 +63,165 @@
           </button>
         </div>
 
-        <!-- Slots Section -->
-        <section class="section-box slots-section">
-          <h2 class="section-title">🅿️ Available Parking Slots</h2>
-          <div id="slots" class="slots-grid">
-            <div>Slot 1</div>
-            <div>Slot 2</div>
-            <div>Slot 3</div>
-            <div>Slot 4</div>
-            <div>Slot 5</div>
-            <div>Slot 6</div>
-            <div>Slot 7</div>
-            <div>Slot 8</div>
-            <div>Slot 9</div>
-            <div>Slot 10</div>
-            <div>Slot 11</div>
-            <div>Slot 12</div>
-            <div>Slot 13</div>
-            <div>Slot 14</div>
-            <div>Slot 15</div>
+        <!-- ================= 1. MULTI-LOCATION SELECTOR (ABOVE SLOTS) ================= -->
+        <section class="section-box location-selector-section">
+          <div class="map-section-header">
+            <div>
+              <h2 class="section-title">📍 Select Parking Destination</h2>
+              <p class="section-subtitle">
+                Choose a smart parking location to view its live satellite deck
+                & availability.
+              </p>
+            </div>
+            <a
+              id="external-nav-link"
+              href="https://maps.google.com/?q=UB+City+Bengaluru"
+              target="_blank"
+              class="btn-open-maps"
+            >
+              ↗ Open in Google Maps
+            </a>
+          </div>
+
+          <!-- 3 Location Cards -->
+          <div class="location-switcher-grid">
+            <!-- Location 1: UB City -->
+            <div
+              class="location-card active"
+              onclick="switchParkingLocation('ub_city', this)"
+            >
+              <div class="location-card-top">
+                <span class="location-pin">📍</span>
+                <span class="location-status active-badge">Selected Bay</span>
+              </div>
+              <h3 class="location-title">UB City Parking Deck</h3>
+              <p class="location-address">
+                Vittal Mallya Rd, KG Halli, Bengaluru
+              </p>
+              <div class="location-meta">
+                <span>⏱️ 5 mins away</span>
+                <span>💰 ₹100 / hr</span>
+              </div>
+            </div>
+
+            <!-- Location 2: Indiranagar -->
+            <div
+              class="location-card"
+              onclick="switchParkingLocation('indiranagar', this)"
+            >
+              <div class="location-card-top">
+                <span class="location-pin">📍</span>
+                <span class="location-status">Multi-Level</span>
+              </div>
+              <h3 class="location-title">Indiranagar 100ft Bay</h3>
+              <p class="location-address">
+                100 Feet Rd, HAL 2nd Stage, Bengaluru
+              </p>
+              <div class="location-meta">
+                <span>⏱️ 18 mins away</span>
+                <span>💰 ₹80 / hr</span>
+              </div>
+            </div>
+
+            <!-- Location 3: Koramangala -->
+            <div
+              class="location-card"
+              onclick="switchParkingLocation('koramangala', this)"
+            >
+              <div class="location-card-top">
+                <span class="location-pin">📍</span>
+                <span class="location-status">Smart Plaza</span>
+              </div>
+              <h3 class="location-title">Koramangala 5th Block</h3>
+              <p class="location-address">
+                Industrial Layout, 5th Block, Bengaluru
+              </p>
+              <div class="location-meta">
+                <span>⏱️ 22 mins away</span>
+                <span>💰 ₹70 / hr</span>
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- Map Section -->
+        <!-- ================= 2. SATELLITE PARKING DECK ================= -->
+        <section class="section-box slots-section">
+          <div class="slots-header-bar">
+            <h2 class="section-title">
+              🅿️ Satellite Surveillance:
+              <span id="current-location-display">UB City Deck</span>
+            </h2>
+            <div class="parking-legend">
+              <span class="legend-badge">
+                <span class="dot-status green"></span> Available Stall
+              </span>
+              <span class="legend-badge">
+                <span class="dot-status red"></span> Occupied Vehicle
+              </span>
+            </div>
+          </div>
+
+          <!-- Satellite View Ground Container -->
+          <div class="satellite-deck" id="satellite-deck-box">
+            <!-- Radar Sweep Line (Active on Refresh) -->
+            <div class="radar-sweep-bar"></div>
+
+            <!-- TOP ROAD & ENTRY LANE -->
+            <div class="deck-road top-road animated-road">
+              <div class="road-surface">
+                <div class="road-markings-lane">
+                  <div class="moving-stripes"></div>
+                </div>
+                <div class="road-marker">
+                  <span class="road-badge">ENTRY GATE</span>
+                  <span class="road-arrow">➔ ➔</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stalls Container: Retains id="slots" and .slots-grid for script.js compatibility -->
+            <div id="slots" class="slots-grid satellite-grid">
+              <div>Slot 1</div>
+              <div>Slot 2</div>
+              <div>Slot 3</div>
+              <div>Slot 4</div>
+              <div>Slot 5</div>
+              <div>Slot 6</div>
+              <div>Slot 7</div>
+              <div>Slot 8</div>
+              <div>Slot 9</div>
+              <div>Slot 10</div>
+              <div>Slot 11</div>
+              <div>Slot 12</div>
+              <div>Slot 13</div>
+              <div>Slot 14</div>
+              <div>Slot 15</div>
+            </div>
+
+            <!-- BOTTOM ROAD & EXIT LANE -->
+            <div class="deck-road bottom-road animated-road">
+              <div class="road-surface">
+                <div class="road-markings-lane">
+                  <div class="moving-stripes"></div>
+                </div>
+                <div class="road-marker exit-marker">
+                  <span class="road-arrow">➔ ➔</span>
+                  <span class="road-badge">EXIT GATE 🏁</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= 3. MAP NAVIGATION SECTION ================= -->
         <section class="section-box map-section">
-          <h2 class="section-title">🗺️ Navigate to Parking Slot</h2>
-          <div class="map-container">
+          <h2 class="section-title">🗺️ Live GPS Navigation Map</h2>
+          <div class="map-container custom-map-frame">
             <iframe
+              id="parking-map-frame"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.003262708966!2d77.59336177484138!3d12.971642787343717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16775069abf7%3A0xe138768bb2a0df8a!2sUB%20City!5e0!3m2!1sen!2sin!4v1788357237370!5m2!1sen!2sin"
               width="100%"
-              height="300"
+              height="280"
               style="border: 0"
               allowfullscreen=""
               loading="lazy"
@@ -125,33 +259,27 @@
       const dashboardTranslations = {
         en: {
           title: "🚗 Blockchain‑Enabled Smart Parking System",
-          slots: "🅿️ Available Parking Slots",
-          ledger: "📒 Blockchain Transaction Ledger",
+          slots: "🅿️ Satellite Surveillance: Parking Deck",
           refresh: "🔄 Refresh Slots",
           viewLedger: "📜 View Blockchain Ledger",
           logout: "Logout",
           slotLabel: "Slot",
-          blockLabel: "Block",
         },
         hi: {
           title: "🚗 ब्लॉकचेन‑सक्षम स्मार्ट पार्किंग सिस्टम",
-          slots: "🅿️ उपलब्ध पार्किंग स्लॉट",
-          ledger: "📒 ब्लॉकचेन लेजर",
+          slots: "🅿️ सैटेलाइट दृश्य: पार्किंग डेक",
           refresh: "🔄 स्लॉट रीफ़्रेश करें",
           viewLedger: "📜 ब्लॉकचेन लेजर देखें",
           logout: "लॉगआउट",
           slotLabel: "स्लॉट",
-          blockLabel: "ब्लॉक",
         },
         kn: {
           title: "🚗 ಬ್ಲಾಕ್‌ಚೈನ್ ಸ್ಮಾರ್ಟ್ ಪಾರ್ಕಿಂಗ್ ಸಿಸ್ಟಮ್",
-          slots: "🅿️ ಲಭ್ಯವಿರುವ ಪಾರ್ಕಿಂಗ್ ಸ್ಲಾಟ್‌ಗಳು",
-          ledger: "📒 ಬ್ಲಾಕ್‌ಚೈನ್ ಲೆಡ್ಜರ್",
+          slots: "🅿️ ಸ್ಯಾಟಲೈಟ್ ವ್ಯೂ: ಪಾರ್ಕಿಂಗ್ ಡೆಕ್",
           refresh: "🔄 ಸ್ಲಾಟ್‌ಗಳನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ",
           viewLedger: "📜 ಬ್ಲಾಕ್‌ಚೈನ್ ಲೆಡ್ಜರ್ ವೀಕ್ಷಿಸಿ",
           logout: "ಲಾಗ್‌ಔಟ್",
           slotLabel: "ಸ್ಲಾಟ್",
-          blockLabel: "ಬ್ಲಾಕ್",
         },
       };
 
@@ -159,24 +287,124 @@
         const text = dashboardTranslations[language];
         if (!text) return;
         document.querySelector(".page-title").textContent = text.title;
-        document.querySelector(".slots-section h2").textContent = text.slots;
         document.getElementById("refresh-slots").textContent = text.refresh;
         document.getElementById("view-ledger").textContent = text.viewLedger;
         document.getElementById("logout-btn").textContent = text.logout;
-        document
-          .querySelectorAll(".slots-grid div")
-          .forEach(
-            (slot, i) => (slot.textContent = `${text.slotLabel} ${i + 1}`),
-          );
         document.documentElement.lang = language;
         localStorage.setItem("selectedLanguage", language);
       }
 
-      // ---------------------- AUTO APPLY SAVED LANGUAGE ----------------------
       window.addEventListener("DOMContentLoaded", () => {
         const savedLang = localStorage.getItem("selectedLanguage") || "en";
         document.getElementById("languageSelect").value = savedLang;
         changeDashboardLanguage(savedLang);
+      });
+
+      // ---------------------- REFRESH ANIMATION ON SLOTS DECK ----------------------
+      function triggerSlotDeckRefresh() {
+        const deck = document.getElementById("satellite-deck-box");
+        const slotsGrid = document.getElementById("slots");
+
+        if (deck && slotsGrid) {
+          // Add pulse and radar sweep animation class
+          deck.classList.add("scanning-active");
+          slotsGrid.classList.add("slots-reloading");
+
+          setTimeout(() => {
+            deck.classList.remove("scanning-active");
+            slotsGrid.classList.remove("slots-reloading");
+          }, 850);
+        }
+
+        // Call backend fetchSlots if script.js defines it
+        if (typeof fetchSlots === "function") {
+          fetchSlots();
+        }
+      }
+
+      // ---------------------- MULTI-LOCATION SWITCHING ----------------------
+      const parkingLocations = {
+        ub_city: {
+          name: "UB City Deck",
+          embedUrl:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.003262708966!2d77.59336177484138!3d12.971642787343717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16775069abf7%3A0xe138768bb2a0df8a!2sUB%20City!5e0!3m2!1sen!2sin!4v1788357237370!5m2!1sen!2sin",
+          externalUrl: "https://maps.google.com/?q=UB+City+Bengaluru",
+        },
+        indiranagar: {
+          name: "Indiranagar 100ft Bay",
+          embedUrl:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.973468087265!2d77.6385324748414!3d12.97354998734208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16a70a8d46db%3A0x6b49c7170198ca15!2s100%20Feet%20Rd%2C%20Indiranagar%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1788358237370!5m2!1sen!2sin",
+          externalUrl:
+            "https://maps.google.com/?q=100+Feet+Road+Indiranagar+Bengaluru",
+        },
+        koramangala: {
+          name: "Koramangala 5th Block",
+          embedUrl:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.601552554763!2d77.61868357484083!3d12.933306987378604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae144e537d8e2d%3A0xcf95a45b736b000!2sKoramangala%205th%20Block%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1788358237371!5m2!1sen!2sin",
+          externalUrl:
+            "https://maps.google.com/?q=Koramangala+5th+Block+Bengaluru",
+        },
+      };
+
+      function switchParkingLocation(locationKey, cardElement) {
+        const mapFrame = document.getElementById("parking-map-frame");
+        const extLink = document.getElementById("external-nav-link");
+        const locationTitle = document.getElementById(
+          "current-location-display",
+        );
+
+        if (!parkingLocations[locationKey]) return;
+
+        // 1. Update map & header
+        mapFrame.src = parkingLocations[locationKey].embedUrl;
+        extLink.href = parkingLocations[locationKey].externalUrl;
+        if (locationTitle)
+          locationTitle.textContent = parkingLocations[locationKey].name;
+
+        // 2. Update active status on card
+        document.querySelectorAll(".location-card").forEach((card) => {
+          card.classList.remove("active");
+          const badge = card.querySelector(".location-status");
+          if (badge && badge.classList.contains("active-badge")) {
+            badge.classList.remove("active-badge");
+            badge.textContent = "Available";
+          }
+        });
+
+        cardElement.classList.add("active");
+        const currentBadge = cardElement.querySelector(".location-status");
+        if (currentBadge) {
+          currentBadge.classList.add("active-badge");
+          currentBadge.textContent = "Selected Bay";
+        }
+
+        // 3. Trigger satellite refresh scan animation!
+        triggerSlotDeckRefresh();
+      }
+
+      // ---------------------- SLOT SELECTION (TURN RED ON CLICK) ----------------------
+      document.addEventListener("DOMContentLoaded", () => {
+        const slotsContainer = document.getElementById("slots");
+
+        if (slotsContainer) {
+          slotsContainer.addEventListener("click", (e) => {
+            const slotElement = e.target.closest("div, button");
+            if (!slotElement || slotElement === slotsContainer) return;
+
+            if (
+              slotElement.classList.contains("occupied") ||
+              slotElement.disabled
+            ) {
+              return;
+            }
+
+            slotsContainer.querySelectorAll(".selected").forEach((s) => {
+              if (s !== slotElement) s.classList.remove("selected");
+            });
+
+            slotElement.classList.toggle("selected");
+          });
+        }
       });
     </script>
   </body>

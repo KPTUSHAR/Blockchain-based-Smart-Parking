@@ -9,19 +9,56 @@
       href="{{ url_for('static', filename='style.css') }}"
     />
   </head>
-  <body class="login-page dashboard-screen">
-    <div class="dashboard-wrapper">
-      <div class="dashboard-container">
-        <!-- Header -->
-        <h1 class="page-title">📒 Blockchain Transaction Ledger</h1>
 
-        <!-- Ledger Section -->
+  <body class="login-page dashboard-screen ledger-page-view">
+    <div class="dashboard-wrapper ledger-wrapper">
+      <div class="dashboard-container ledger-container">
+        <!-- Navigation & Network Status Header -->
+        <div class="ledger-nav-strip">
+          <button
+            type="button"
+            class="btn-primary back-btn"
+            onclick="window.location.href = '/dashboard'"
+          >
+            ← Back to Dashboard
+          </button>
+          <div class="ledger-status-pill">
+            <span class="live-pulse"></span>
+            NETWORK: <strong>SMART-CHAIN PROD</strong>
+          </div>
+        </div>
+
+        <!-- Explorer Title & Metadata Metrics Strip -->
+        <div class="ledger-header-panel">
+          <h1 class="page-title">📒 Blockchain Transaction Ledger</h1>
+          <p class="ledger-subtitle">
+            Cryptographically signed block transactions and distributed parking
+            settlements.
+          </p>
+
+          <div class="ledger-stats-grid">
+            <div class="stat-pill">
+              <span class="pill-label">CONSENSUS</span>
+              <span class="pill-val">Proof of Authority</span>
+            </div>
+            <div class="stat-pill">
+              <span class="pill-label">CRYPTOGRAPHY</span>
+              <span class="pill-val">SHA-256</span>
+            </div>
+            <div class="stat-pill">
+              <span class="pill-label">INTEGRITY</span>
+              <span class="pill-val sync-status">Verified & Immutable</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ledger Feed Container (Retains id="ledger" for fetchChain) -->
         <section class="section-box ledger-section">
           <div id="ledger" class="ledger-box"></div>
         </section>
 
         <!-- Footer -->
-        <footer>© 2025 Smart Parking System | Blockchain Enabled</footer>
+        <footer>© 2026 Smart Parking System | Cryptographically Secured</footer>
       </div>
     </div>
 
@@ -29,7 +66,9 @@
     <script>
       // Auto-load blockchain ledger when page opens
       window.addEventListener("DOMContentLoaded", () => {
-        fetchChain();
+        if (typeof fetchChain === "function") {
+          fetchChain();
+        }
       });
     </script>
   </body>
