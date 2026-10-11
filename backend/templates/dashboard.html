@@ -63,7 +63,7 @@
           </button>
         </div>
 
-        <!-- ================= 1. MULTI-LOCATION SELECTOR (ABOVE SLOTS) ================= -->
+        <!-- ================= 1. MULTI-LOCATION SELECTOR ================= -->
         <section class="section-box location-selector-section">
           <div class="map-section-header">
             <div>
@@ -75,7 +75,7 @@
             </div>
             <a
               id="external-nav-link"
-              href="https://maps.google.com/?q=UB+City+Bengaluru"
+              href="https://maps.google.com/?q=Bengaluru"
               target="_blank"
               class="btn-open-maps"
             >
@@ -83,16 +83,16 @@
             </a>
           </div>
 
-          <!-- 3 Location Cards -->
+          <!-- 3 Location Cards: Initially None Active -->
           <div class="location-switcher-grid">
             <!-- Location 1: UB City -->
             <div
-              class="location-card active"
+              class="location-card"
               onclick="switchParkingLocation('ub_city', this)"
             >
               <div class="location-card-top">
                 <span class="location-pin">📍</span>
-                <span class="location-status active-badge">Selected Bay</span>
+                <span class="location-status">Select Bay</span>
               </div>
               <h3 class="location-title">UB City Parking Deck</h3>
               <p class="location-address">
@@ -144,12 +144,25 @@
           </div>
         </section>
 
-        <!-- ================= 2. SATELLITE PARKING DECK ================= -->
-        <section class="section-box slots-section">
+        <!-- ================= PROMPT PLACEHOLDER (BEFORE SELECTION) ================= -->
+        <div id="select-prompt-box" class="select-prompt-card">
+          <div class="prompt-icon">🛰️</div>
+          <h3>Select a Location Above to Load Stalls</h3>
+          <p>
+            Please select one of the parking hubs to initialize real-time
+            satellite surveillance & booking deck.
+          </p>
+        </div>
+
+        <!-- ================= 2. SATELLITE PARKING DECK (HIDDEN INITIALLY) ================= -->
+        <section
+          class="section-box slots-section deck-hidden"
+          id="slots-deck-wrapper"
+        >
           <div class="slots-header-bar">
             <h2 class="section-title">
               🅿️ Satellite Surveillance:
-              <span id="current-location-display">UB City Deck</span>
+              <span id="current-location-display">Live Deck</span>
             </h2>
             <div class="parking-legend">
               <span class="legend-badge">
@@ -163,7 +176,7 @@
 
           <!-- Satellite View Ground Container -->
           <div class="satellite-deck" id="satellite-deck-box">
-            <!-- Radar Sweep Line (Active on Refresh) -->
+            <!-- Radar Sweep Line (Active on Reveal & Refresh) -->
             <div class="radar-sweep-bar"></div>
 
             <!-- TOP ROAD & ENTRY LANE -->
@@ -259,7 +272,6 @@
       const dashboardTranslations = {
         en: {
           title: "🚗 Blockchain‑Enabled Smart Parking System",
-          slots: "🅿️ Satellite Surveillance: Parking Deck",
           refresh: "🔄 Refresh Slots",
           viewLedger: "📜 View Blockchain Ledger",
           logout: "Logout",
@@ -267,7 +279,6 @@
         },
         hi: {
           title: "🚗 ब्लॉकचेन‑सक्षम स्मार्ट पार्किंग सिस्टम",
-          slots: "🅿️ सैटेलाइट दृश्य: पार्किंग डेक",
           refresh: "🔄 स्लॉट रीफ़्रेश करें",
           viewLedger: "📜 ब्लॉकचेन लेजर देखें",
           logout: "लॉगआउट",
@@ -275,7 +286,6 @@
         },
         kn: {
           title: "🚗 ಬ್ಲಾಕ್‌ಚೈನ್ ಸ್ಮಾರ್ಟ್ ಪಾರ್ಕಿಂಗ್ ಸಿಸ್ಟಮ್",
-          slots: "🅿️ ಸ್ಯಾಟಲೈಟ್ ವ್ಯೂ: ಪಾರ್ಕಿಂಗ್ ಡೆಕ್",
           refresh: "🔄 ಸ್ಲಾಟ್‌ಗಳನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ",
           viewLedger: "📜 ಬ್ಲಾಕ್‌ಚೈನ್ ಲೆಡ್ಜರ್ ವೀಕ್ಷಿಸಿ",
           logout: "ಲಾಗ್‌ಔಟ್",
@@ -306,7 +316,6 @@
         const slotsGrid = document.getElementById("slots");
 
         if (deck && slotsGrid) {
-          // Add pulse and radar sweep animation class
           deck.classList.add("scanning-active");
           slotsGrid.classList.add("slots-reloading");
 
@@ -316,13 +325,12 @@
           }, 850);
         }
 
-        // Call backend fetchSlots if script.js defines it
         if (typeof fetchSlots === "function") {
           fetchSlots();
         }
       }
 
-      // ---------------------- MULTI-LOCATION SWITCHING ----------------------
+      // ---------------------- MULTI-LOCATION SWITCHING & REVEAL ----------------------
       const parkingLocations = {
         ub_city: {
           name: "UB City Deck",
@@ -352,22 +360,31 @@
         const locationTitle = document.getElementById(
           "current-location-display",
         );
+        const promptBox = document.getElementById("select-prompt-box");
+        const deckSection = document.getElementById("slots-deck-wrapper");
 
         if (!parkingLocations[locationKey]) return;
 
-        // 1. Update map & header
+        // 1. Reveal deck with slide-down animation and hide placeholder
+        if (promptBox) promptBox.style.display = "none";
+        if (deckSection) {
+          deckSection.classList.remove("deck-hidden");
+          deckSection.classList.add("deck-revealed");
+        }
+
+        // 2. Update map & header
         mapFrame.src = parkingLocations[locationKey].embedUrl;
         extLink.href = parkingLocations[locationKey].externalUrl;
         if (locationTitle)
           locationTitle.textContent = parkingLocations[locationKey].name;
 
-        // 2. Update active status on card
+        // 3. Update active card badges
         document.querySelectorAll(".location-card").forEach((card) => {
           card.classList.remove("active");
           const badge = card.querySelector(".location-status");
-          if (badge && badge.classList.contains("active-badge")) {
+          if (badge) {
             badge.classList.remove("active-badge");
-            badge.textContent = "Available";
+            badge.textContent = "Select Bay";
           }
         });
 
@@ -378,7 +395,7 @@
           currentBadge.textContent = "Selected Bay";
         }
 
-        // 3. Trigger satellite refresh scan animation!
+        // 4. Trigger radar sweep animation!
         triggerSlotDeckRefresh();
       }
 

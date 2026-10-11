@@ -2658,5 +2658,33 @@
     "data": "🅿️ Tushar booked Slot 1 at 2026-10-11 20:23:47",
     "previous_hash": "de7f340d9471e0bcd74c517f8f7111cc31f85f88e3f42dfd596e067d1b72a848",
     "hash": "2a3858e6d1dae9fcf057cfe9dbf83bda66bdc605a4545b7453e504b56d894a94"
+  },
+  {
+    "index": 380,
+    "timestamp": "2026-10-11 20:28:54",
+    "data": "🔐 Tushar logged in.",
+    "previous_hash": "2a3858e6d1dae9fcf057cfe9dbf83bda66bdc605a4545b7453e504b56d894a94",
+    "hash": "28bbca4f53b42bc56d4d9e87eddba3055c6fd337a26fcd545805974222eb96f9"
+  },
+  {
+    "index": 381,
+    "timestamp": "2026-10-11 20:28:59",
+    "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "28bbca4f53b42bc56d4d9e87eddba3055c6fd337a26fcd545805974222eb96f9",
+    "hash": "74819df30794260d1796fc6ae0875335058440ac582f2ce18d028e13ee5940f1"
+  },
+  {
+    "index": 382,
+    "timestamp": "2026-10-11 20:31:30",
+    "data": "🔐 Tushar logged in.",
+    "previous_hash": "74819df30794260d1796fc6ae0875335058440ac582f2ce18d028e13ee5940f1",
+    "hash": "449eb152f1c8371997cb388a4157967cc16aa4f5e67e52877a731ed5b16f73d0"
+  },
+  {
+    "index": 383,
+    "timestamp": "2026-10-11 20:31:35",
+    "data": "🚗 Tushar registered 1 vehicle(s), slot limit = 1",
+    "previous_hash": "449eb152f1c8371997cb388a4157967cc16aa4f5e67e52877a731ed5b16f73d0",
+    "hash": "d9833c15600156362d9a211c7ef54b625d3600dba1f148ee7dd185e0996d8861"
   }
 ]
