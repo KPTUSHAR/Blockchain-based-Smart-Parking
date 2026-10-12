@@ -548,6 +548,9 @@ def payment_success():
             f"Transaction ID: {transaction_id}"
         )
 
+        print("START:", start_time)
+        print("END:", end_time)
+
         # Generate and return PDF receipt
         return generate_receipt(
             slot_number,
@@ -556,6 +559,7 @@ def payment_success():
             amount,
             transaction_id
         )
+    
 
     except Exception as e:
         # Log error to console and return JSON

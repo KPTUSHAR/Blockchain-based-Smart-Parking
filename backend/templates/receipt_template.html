@@ -114,6 +114,11 @@
         <p><strong>Slot Number:</strong> {{ slot_number }}</p>
         <p><strong>Start Time:</strong> {{ start_time }}</p>
         <p><strong>End Time:</strong> {{ end_time }}</p>
+        <p><strong>Parking Duration:</strong> {{ duration_minutes }} minutes</p>
+
+        <p><strong>Allowed Duration:</strong> 60 minutes</p>
+
+        <p><strong>Overstay Charge:</strong> ₹{{ overstay_charge }}</p>
       </div>
 
       <table>
@@ -134,13 +139,27 @@
             <td>₹{{ subtotal }}</td>
             <td>₹{{ tax }}</td>
           </tr>
+
+          <tr>
+            <td>{{ duration_minutes }} min</td>
+            <td>Overstay Charges</td>
+            <td>₹{{ overstay_rate }}</td>
+            <td>₹{{ overstay_charge }}</td>
+            <td>₹0.00</td>
+          </tr>
         </tbody>
       </table>
 
       <div class="totals">
-        <p>Subtotal: ₹{{ subtotal }}</p>
+        <p>Parking Charges: ₹{{ subtotal }}</p>
+
+        <p>Overstay Charges: ₹{{ overstay_charge }}</p>
+
         <p>Tax ({{ tax_rate }}%): ₹{{ tax }}</p>
-        <p><strong>Total: ₹{{ total }}</strong></p>
+
+        <p>
+          <strong> Total Amount Paid: ₹{{ total }} </strong>
+        </p>
       </div>
 
       <div class="transaction">

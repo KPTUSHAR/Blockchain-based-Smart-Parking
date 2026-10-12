@@ -7,6 +7,8 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import Table, TableStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from datetime import datetime, timedelta
+import math
 
 def setup_unicode_fonts():
     """Attempts to register system TTF fonts for Unicode ₹ support; falls back cleanly."""
@@ -42,8 +44,40 @@ def setup_unicode_fonts():
 
 def generate_receipt(slot_number, start_time, end_time, amount, transaction_id):
     amount = float(amount)
+
+    fmt = "%Y-%m-%d %H:%M:%S"
+
+    start_dt = datetime.strptime(start_time, fmt)
+
+    # Allocated parking duration = 60 minutes
+    end_dt = start_dt + timedelta(minutes=60)
+
+    # Update displayed checkout time
+    end_time = end_dt.strftime("%Y-%m-%d %H:%M:%S")
+
+    # Safety check: checkout should never be before checkin
+    if end_dt > start_dt:
+        end_dt = start_dt
+
+    minutes_parked = 60
+
+    ALLOWED_MINUTES = 60
+    OVERSTAY_RATE = 50
+
+    extra_charge = 0
+
+    if minutes_parked > ALLOWED_MINUTES:
+        extra_minutes = minutes_parked - ALLOWED_MINUTES
+
+        extra_charge = (
+            math.ceil(extra_minutes / 60)
+            * OVERSTAY_RATE
+        )
+
     tax = amount * 0.10
-    total = amount + tax
+
+    total = amount + tax + extra_charge
+
 
     font_reg, font_bold, font_italic, curr = setup_unicode_fonts()
 
@@ -106,6 +140,18 @@ def generate_receipt(slot_number, start_time, end_time, amount, transaction_id):
     p.drawString(122, 567, f"Check-out: {end_time}")
     p.drawString(122, 553, "Status: Confirmed Paid")
 
+    p.drawString(
+        122,
+        539,
+        f"Parking Duration: {minutes_parked} minutes"
+    )
+
+    p.drawString(
+        122,
+        525,
+        f"Overstay Charge: {curr} {extra_charge:.2f}"
+    )
+
     # Notes Box
     notes_x, notes_y, notes_w, notes_h = 265, 545, 297, 60
     p.setStrokeColor(border_color)
@@ -114,9 +160,25 @@ def generate_receipt(slot_number, start_time, end_time, amount, transaction_id):
 
     p.setFont(font_reg, 8)
     p.setFillColor(colors.HexColor("#444444"))
-    p.drawString(notes_x + 5, notes_y + notes_h - 12, "[Notes]")
-    p.drawString(notes_x + 8, notes_y + notes_h - 26, f"Automated entry & exit linked to Slot #{slot_number}.")
-    p.drawString(notes_x + 8, notes_y + notes_h - 38, "Please retain this receipt for gate pass validation.")
+    
+    p.drawString(notes_x + 8, notes_y + notes_h - 15, f"Automated entry & exit linked to Slot #{slot_number}.")
+    p.drawString(
+        notes_x + 8,
+        notes_y + notes_h - 29,
+        "Please retain this receipt for gate pass validation."
+    )
+
+    p.drawString(
+        notes_x + 8,
+        notes_y + notes_h - 43,
+        "Allocated parking time is 60 minutes."
+    )
+
+    p.drawString(
+        notes_x + 8,
+        notes_y + notes_h - 57,
+        "Extra charges will be applied automatically at checkout if overstayed."
+    )
 
     # ================= 4. ITEMIZED TABLE =================
     table_headers = ["QUANTITY", "DESCRIPTION", "UNIT PRICE", "SUBTOTAL", "TAX"]
@@ -155,20 +217,52 @@ def generate_receipt(slot_number, start_time, end_time, amount, transaction_id):
 
     p.setFont(font_reg, 9)
     p.setFillColor(colors.black)
-    p.drawString(totals_label_x, 325, "Subtotal")
-    p.drawRightString(totals_val_x, 325, f"{curr} {amount:.2f}")
 
-    p.drawString(totals_label_x, 307, "Tax (10%)")
-    p.drawRightString(totals_val_x, 307, f"{curr} {tax:.2f}")
+    p.drawString(
+        totals_label_x,
+        325,
+        "Subtotal"
+    )
+
+    p.drawRightString(
+        totals_val_x,
+        325,
+        f"{curr} {amount:.2f}"
+    )
+
+    p.drawString(
+        totals_label_x,
+        307,
+        "Tax (10%)"
+    )
+
+    p.drawRightString(
+        totals_val_x,
+        307,
+        f"{curr} {tax:.2f}"
+    )
+
+    p.drawString(
+        totals_label_x,
+        289,
+        "Overstay Charge"
+    )
+
+    p.drawRightString(
+        totals_val_x,
+        289,
+        f"{curr} {extra_charge:.2f}"
+    )
 
     p.setFont(font_bold, 12)
     p.setFillColor(primary_brown)
-    p.drawString(totals_label_x, 287, "Total")
-    p.drawRightString(totals_val_x, 287, f"{curr} {total:.2f}")
+
+    p.drawString(totals_label_x, 258, "Total")
+    p.drawRightString(totals_val_x, 258, f"{curr} {total:.2f}")
 
     p.setStrokeColor(primary_brown)
     p.setLineWidth(1.5)
-    p.line(325, 276, 562, 276)
+    p.line(325, 248, 562, 248)
 
 # ================= CCTV ACCESS DETAILS =================
 
